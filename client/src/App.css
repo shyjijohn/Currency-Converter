@@ -9,10 +9,12 @@
 {
   text-align: center;
   align-items: center;
+  /* width: 600px; */
 }
 .col
 {
   width: 40%;
+  justify-content: space-around;
 }
 .row
 {
@@ -22,6 +24,7 @@
 }
 button
 {
+  display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -32,11 +35,12 @@ button
   color: white;
   border-radius: 15px;
   border: 0;
+  margin: 0 auto;
 }
 select,
 input
 {
-  width: 50%;
+  width: 100%;
   padding: 8px 0px;
   margin-bottom: 15px;
   font-size: 16px;

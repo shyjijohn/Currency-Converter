@@ -5,23 +5,107 @@
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+.background
+{
+  background: rgb(0, 35, 102);
+  max-width: 2100px;
+  height: 400px;
+  color: white;
+}
+@media (max-width: 600px) {
+  .background {
+    padding: 10px; 
+  }
+}
+
+@media (min-width: 1200px) {
+  .background {
+    padding: 0px;
+  }
+}
+h1
+{
+  transform: translate(0px, 50px);
+  text-align: center;
+  align-items: center;
+}
+
+.app-bar {
+  position: relative;
+  background: rgb(230, 225, 225);
+  border-radius: 10%;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between; 
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: blue;
+  text-decoration: none; 
+  margin-right: 180px; 
+}
+
+nav ul li a:hover {
+  text-decoration: underline; 
+}
+
+.stacking
+{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  padding: 30px;
+}
+.amount
+{
+  color: black;
+  transform: translate(35px, -40px);
+}
+.from
+{
+  color: black;
+  transform: translate(15px, -40px);
+}
+.to
+{
+  color: black;
+  transform: translate(-5px, -40px);
+}
+.box
+{
+  height: 90%;
+  width: 80%;
+  transform: translate(100px,100px);
+  background: white;
+  position: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Smooth box shadow */
+  transition: box-shadow 0.3s ease; /* Transition effect for smoothness */
+  border: 1px solid rgb(226, 221, 221);
+  border-radius: 10px;
+}
+.box:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4); /* Adjusted box shadow on hover */
+}
 .container
 {
   text-align: center;
   align-items: center;
+  
   /* width: 600px; */
 }
-.col
-{
-  width: 40%;
-  justify-content: space-around;
-}
-.row
-{
-  display: flex;
-  align-items: center;
-  justify-content:space-around
-}
+
 button
 {
   display: flex;
@@ -31,7 +115,7 @@ button
   padding: 5px;
   width: 200px;
   display: block;
-  background-color: black;
+  background-color: blue;
   color: white;
   border-radius: 15px;
   border: 0;
@@ -40,8 +124,29 @@ button
 select,
 input
 {
-  width: 100%;
-  padding: 8px 0px;
+  margin-right: 30px;
+  margin-left: -20px;
+  width: 30%;
+  padding: 10px;
   margin-bottom: 15px;
   font-size: 16px;
+}
+
+.inputspan
+{
+  transform: translate(20px, -5px);
+  color: black;
+  font-size: 20px;
+}
+.equalto
+{
+  transform: translate(80px, -40px);
+  color: black;
+}
+.outputspan
+{
+  transform: translate(20px, -25px);
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
 }

@@ -14,6 +14,8 @@ function App() {
   const [ convertedValue, setConvertedValue ] = useState('')
   const [ selectedInputCurrency, setSelectedInputCurrency ] = useState('')
   const [ selectedOutputCurrency, setSelectedOutputCurrency ] = useState('')
+  const [ selectedInputCurrencyKey, setSelectedInputCurrencyKey ] = useState('')
+  const [ selectedOutputCurrencyKey, setSelectedOutputCurrencyKey ] = useState('')
 
   function fetchDataFromServer() {
     var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
@@ -25,6 +27,7 @@ function App() {
       // console.log("data1 : ", entries)
       // console.log("data2 : "  + entries)
       setOptions(entries)
+      console.log("entries : ", entries)
     })
   }
 
@@ -41,8 +44,27 @@ function App() {
 
   function handleSelectChange1(e) 
   {
+    
+
+
+    // const selectedIndex = e.target.selectedIndex.options.map((option) =>{option[1]})
+    // console.log("selectedIndex", selectedIndex)
+
+    const selectedOptionKey = e.target.getAttribute('key')
+    // // console.log("e.target.options[selectedIndex]", e.target.options[selectedIndex])
+    // // console.log("getAttribute('data-key')", getAttribute('data-key')) 
+    console.log("selectedOptionKey", selectedOptionKey)
+
+
+
+    // setSelectedInputCurrencyKey(selectedIndex); 
+    // console.log("selectedInputCurrencyKey", selectedIndex[1])
+
+
     setSelectedInputCurrency(e.target.value);
+    console.log("selectedInputCurrency", e.target.value)
   }
+
 
   function handleSelectChange2(e) 
   {
@@ -69,11 +91,31 @@ function App() {
 
 
   return (
-    <div>
-      <div class="container"><h1>Currency Converter</h1></div>
-      <div class="row">
-        <div class="col">
-          <select value={selectedInputCurrency} onChange={handleSelectChange1}>
+    //make a box with shadow effect
+    //set the heading convert and charts
+    //position the textboxes
+    //display the converted currency value
+
+
+    
+<div class = "background">
+<h1>Currency Converter</h1>
+    <div class = "box">
+    <div class="app-bar">
+  <nav>
+    <ul>
+      <li><a href="#">Convert</a></li>
+      <li><a href="#">Send</a></li>
+      <li><a href="#">Charts</a></li>
+      <li><a href="#">Alert</a></li>
+    </ul>
+  </nav>
+</div>
+      <div class = "stacking">
+      <div class = "amount">Amount</div>
+        <input type="number" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
+        <div class = "from">From</div>
+          <select value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
             {
               options.map((option) => {
                 // console.log(option)
@@ -84,10 +126,8 @@ function App() {
               })
             }
           </select>
-          <input type="number" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
-        </div>
-
-        <div class="col">
+          
+          <div class = "to">To</div>
           <select value={selectedOutputCurrency} onChange={handleSelectChange2}>
           {
               options.map((option) => {
@@ -95,16 +135,18 @@ function App() {
                 return (
                   <option key={option[0]} value={option[0]}>{option[0]}</option>
                 )
-
               })
             }
           </select>
-          <input type="number" value={convertedValue} disabled></input>
-        </div>
-      </div>
+</div>
+          <div>
 
+          <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}</div><p class = "equalto">=</p>
+          <div class="outputspan">{convertedValue}{selectedOutputCurrency}</div>
+          </div>
       <button type="submit" onClick={convert}>Convert</button>
       <br />
+    </div>
     </div>
   );
 }

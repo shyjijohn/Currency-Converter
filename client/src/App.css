@@ -4,15 +4,21 @@
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+}.parent
+{
+  width: 100%;
+  height: 100%;
 }
 .background
 {
   background: rgb(0, 35, 102);
-  max-width: 2100px;
+  width: 100%;
   height: 400px;
   color: white;
 }
-@media (max-width: 600px) {
+
+
+/* @media (max-width: 600px) {
   .background {
     padding: 10px; 
   }
@@ -22,74 +28,35 @@
   .background {
     padding: 0px;
   }
-}
+} */
+
+
 h1
 {
-  transform: translate(0px, 50px);
-  text-align: center;
-  align-items: center;
-}
-
-.app-bar {
-  position: relative;
-  background: rgb(230, 225, 225);
-  border-radius: 10%;
-  padding: 30px;
+  padding: 10px;
   display: flex;
-  align-items: center;
   text-align: center;
-  justify-content: space-between; 
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-}
-
-nav ul li a {
-  color: blue;
-  text-decoration: none; 
-  margin-right: 180px; 
-}
-
-nav ul li a:hover {
-  text-decoration: underline; 
-}
-
-.stacking
-{
-  display: flex;
   align-items: center;
-  text-align: center;
-  justify-content: space-between;
-  padding: 30px;
+  justify-content: center;
 }
-.amount
-{
-  color: black;
-  transform: translate(35px, -40px);
-}
-.from
-{
-  color: black;
-  transform: translate(15px, -40px);
-}
-.to
-{
-  color: black;
-  transform: translate(-5px, -40px);
-}
+
 .box
 {
-  height: 90%;
-  width: 80%;
-  transform: translate(100px,100px);
+  width: 90%;
+  max-width: 1150px;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Vertically center items */
+  align-items: center; /* Horizontally center items */
+  
+  
   background: white;
-  position: center;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Smooth box shadow */
   transition: box-shadow 0.3s ease; /* Transition effect for smoothness */
   border: 1px solid rgb(226, 221, 221);
@@ -98,15 +65,120 @@ nav ul li a:hover {
 .box:hover {
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4); /* Adjusted box shadow on hover */
 }
-.container
-{
-  text-align: center;
-  align-items: center;
+
+.app-bar {
+  width: 100%; 
+  background: rgb(230, 225, 225);
+  padding: 30px;
+  font-size: 18px;
   
-  /* width: 600px; */
 }
 
-button
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+nav ul li {
+  display: inline;
+ 
+}
+
+nav ul li a {
+  color: blue;
+  text-decoration: none; 
+}
+
+nav ul li a:hover {
+  text-decoration: underline; 
+}
+
+
+.stacking
+{
+  background-color: red;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content:space-around;
+  padding: 50px;
+}
+
+.amountDiv, .fromDiv, .toDiv
+{
+  background-color: white;
+  padding: 10px;
+}
+.amount, .from, .to
+{
+  color: black;
+  text-align: left;
+}
+
+select
+{
+  background-color: blue;
+  /* min-width: 200px;
+  max-width: 300px; */
+  width: 100%;
+  min-width: 250px;
+  border-radius: 10px;
+  padding:10px;
+  font-size: 16px;
+}
+
+input
+{
+  background-color: orange;
+  min-width: 250px;
+  width: 100%;
+  /* min-width: 200px;
+  max-width: 300px; */
+  border-radius: 10px;
+  padding:10px;
+  font-size: 16px;
+}
+
+/* .resultValue
+{
+display: flex;
+text-align: left;
+justify-content: left;
+} */
+
+.inputspan
+{
+  background-color: brown;
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  color: black;
+  font-size: 20px;
+}
+.equalto
+{
+  left: 20%;
+  background-color: blue;
+  color: black;
+}
+.outputspan
+{
+  background-color: brown;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
+
+/* button
 {
   display: flex;
   text-align: center;
@@ -120,33 +192,6 @@ button
   border-radius: 15px;
   border: 0;
   margin: 0 auto;
-}
-select,
-input
-{
-  margin-right: 30px;
-  margin-left: -20px;
-  width: 30%;
-  padding: 10px;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
+} */
 
-.inputspan
-{
-  transform: translate(20px, -5px);
-  color: black;
-  font-size: 20px;
-}
-.equalto
-{
-  transform: translate(80px, -40px);
-  color: black;
-}
-.outputspan
-{
-  transform: translate(20px, -25px);
-  color: black;
-  font-size: 25px;
-  font-weight: bold;
-}
+

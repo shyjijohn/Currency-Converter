@@ -12,10 +12,24 @@ function App() {
 
   const [inputCurrencyValue, setInputCurrencyValue] = useState('')
   const [convertedValue, setConvertedValue] = useState('')
-  const [selectedInputCurrency, setSelectedInputCurrency] = useState('')
+  const [selectedInputCurrency, setSelectedInputCurrency] = useState('fgfgf')
   const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('')
   const [selectedInputCurrencyKey, setSelectedInputCurrencyKey] = useState('')
   const [selectedOutputCurrencyKey, setSelectedOutputCurrencyKey] = useState('')
+  const [equalto, setEqualTo] = useState('=')
+  const [activeId, setActiveId] = useState(1);
+
+
+  const items = [
+    { id: 1, text: "Convert" },
+    { id: 2, text: "Chart" }
+  ];
+
+
+  const handleItemClick = (id) => {
+    console.log("ID", id)
+    setActiveId(id);
+  };
 
   function fetchDataFromServer() {
     var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
@@ -28,6 +42,10 @@ function App() {
       // console.log("data2 : "  + entries)
       setOptions(entries)
       console.log("entries : ", entries)
+      setSelectedInputCurrency(entries[0][0])
+      console.log("setSelectedInputCurrency : ", selectedInputCurrency)
+      setSelectedOutputCurrency(entries[0][0])
+      console.log("setSelectedInputCurrency : ", selectedOutputCurrency)
     })
   }
 
@@ -101,10 +119,13 @@ function App() {
           <div class="app-bar">
             <nav>
               <ul>
-                <li><a href="#">Convert</a></li>
-                <li><a href="#">Send</a></li>
-                <li><a href="#">Charts</a></li>
-                <li><a href="#">Alert</a></li>
+                {items.map((item) => (
+                  <li key={item.id}
+                    onClick={() => handleItemClick(item.id)}
+                    className={activeId === item.id ? "activeLi" : ""}>
+                    {item.text}
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
@@ -145,7 +166,7 @@ function App() {
 
 
           <div class="resultValue" >
-            <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}</div><p class="equalto">=</p>
+            <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}{equalto}</div><br />
             <div class="outputspan">{convertedValue}{selectedOutputCurrency}</div>
           </div>
           <div class="buttonDiv">

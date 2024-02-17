@@ -1,16 +1,18 @@
-*,*::after,*::before
-{
+*,
+*::after,
+*::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-}.parent
-{
+}
+
+.parent {
   width: 100%;
   height: 100%;
 }
-.background
-{
+
+.background {
   background: rgb(0, 35, 102);
   width: 100%;
   height: 400px;
@@ -31,8 +33,7 @@
 } */
 
 
-h1
-{
+h1 {
   padding: 10px;
   display: flex;
   text-align: center;
@@ -40,11 +41,11 @@ h1
   justify-content: center;
 }
 
-.box
-{
+.box {
   width: 90%;
   max-width: 1150px;
-  height: 50%;
+  /* height: 50%; */
+  /* max-height: 700px; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -52,26 +53,32 @@ h1
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Vertically center items */
-  align-items: center; /* Horizontally center items */
-  
-  
+  justify-content: flex-start;
+  /* Vertically center items */
+  align-items: center;
+  /* Horizontally center items */
+
+
   background: white;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Smooth box shadow */
-  transition: box-shadow 0.3s ease; /* Transition effect for smoothness */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  /* Smooth box shadow */
+  transition: box-shadow 0.3s ease;
+  /* Transition effect for smoothness */
   border: 1px solid rgb(226, 221, 221);
   border-radius: 10px;
 }
+
 .box:hover {
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4); /* Adjusted box shadow on hover */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+  /* Adjusted box shadow on hover */
 }
 
 .app-bar {
-  width: 100%; 
-  background: rgb(230, 225, 225);
-  padding: 30px;
+  width: 100%;
+  background: rgb(201, 213, 233);
+  padding: 0px;
   font-size: 18px;
-  
+  color: black;
 }
 
 nav ul {
@@ -80,26 +87,42 @@ nav ul {
   display: flex;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 nav ul li {
   display: inline;
- 
+
 }
 
 nav ul li a {
   color: blue;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 nav ul li a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
+}
+
+nav ul li a:active {
+  color: yellow;
+}
+
+li {
+  text-align: center;
+  width: 100%;
+  line-height: 50px;
+  height: 50px;
+  /* background-color: red; */
+}
+
+.activeLi {
+  background-color: white;
 }
 
 
-.stacking
-{
+
+.stacking {
   /* background-color: red; */
   width: 100%;
   height: 30%;
@@ -107,57 +130,58 @@ nav ul li a:hover {
   flex-wrap: wrap;
   align-items: center;
   text-align: center;
-  justify-content:space-around;
-  padding: 50px;
+  justify-content: space-around;
+  padding: 30px;
 }
 
-.amountDiv, .fromDiv, .toDiv
-{
+.amountDiv,
+.fromDiv,
+.toDiv {
   /* background-color: white; */
   padding: 10px;
 }
-.amount, .from, .to
-{
+
+.amount,
+.from,
+.to {
   color: black;
   text-align: left;
 }
 
-select
-{
+select {
   /* background-color: blue; */
   /* min-width: 200px;
   max-width: 300px; */
   width: 100%;
   min-width: 250px;
   border-radius: 10px;
-  padding:10px;
+  padding: 10px;
   font-size: 16px;
-  box-shadow: 0px 0px 20px rgba(96, 92, 92, 0.2); /* Smooth box shadow */
+  box-shadow: 0px 0px 20px rgba(96, 92, 92, 0.2);
+  /* Smooth box shadow */
 
 }
 
-input
-{
+input {
   /* background-color: orange; */
   min-width: 250px;
   width: 100%;
   /* min-width: 200px;
   max-width: 300px; */
   border-radius: 10px;
-  padding:10px;
+  padding: 10px;
   font-size: 16px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Smooth box shadow */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  /* Smooth box shadow */
 }
 
-.resultValue
-{
+.resultValue {
   /* background-color: aqua; */
   width: 100%;
-  padding: 20px;
+  padding: 40px;
 }
 
-.inputspan
-{
+.inputspan {
   /* background-color: brown; */
   display: flex;
   text-align: left;
@@ -165,25 +189,25 @@ input
   color: black;
   font-size: 20px;
 }
-.equalto
-{
+
+.equalto {
   left: 20%;
   /* background-color: blue; */
   color: black;
 }
-.outputspan
-{
+
+.outputspan {
   /* background-color: brown; */
   color: black;
   font-size: 25px;
   font-weight: bold;
 }
 
-.buttonDiv
-{
+.buttonDiv {
   /* background-color: yellow; */
   width: 100%;
   height: 25%;
+  padding: 20px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -191,8 +215,7 @@ input
 }
 
 
-button
-{
+button {
   padding: 10px;
   width: 200px;
   display: block;
@@ -202,4 +225,3 @@ button
   border: 0;
   margin: 0 auto;
 }
-

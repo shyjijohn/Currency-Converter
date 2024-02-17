@@ -109,11 +109,11 @@ function App() {
             </nav>
           </div>
           <div class="stacking">
-            <div class = "amountDiv">
+            <div class="amountDiv">
               <div class="amount">Amount</div>
               <input type="number" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
             </div>
-            <div class = "fromDiv">
+            <div class="fromDiv">
               <div class="from">From</div>
               <select value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
                 {
@@ -128,7 +128,7 @@ function App() {
               </select>
             </div>
 
-            <div class = "toDiv">
+            <div class="toDiv">
               <div class="to">To</div>
               <select value={selectedOutputCurrency} onChange={handleSelectChange2}>
                 {
@@ -148,7 +148,9 @@ function App() {
             <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}</div><p class="equalto">=</p>
             <div class="outputspan">{convertedValue}{selectedOutputCurrency}</div>
           </div>
-          {/* <button type="submit" onClick={convert}>Convert</button> */}
+          <div class="buttonDiv">
+            <button type="submit" onClick={convert}>Convert</button>
+          </div>
         </div>
         <div>
         </div>

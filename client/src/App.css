@@ -100,7 +100,7 @@ nav ul li a:hover {
 
 .stacking
 {
-  background-color: red;
+  /* background-color: red; */
   width: 100%;
   height: 30%;
   display: flex;
@@ -113,7 +113,7 @@ nav ul li a:hover {
 
 .amountDiv, .fromDiv, .toDiv
 {
-  background-color: white;
+  /* background-color: white; */
   padding: 10px;
 }
 .amount, .from, .to
@@ -124,7 +124,7 @@ nav ul li a:hover {
 
 select
 {
-  background-color: blue;
+  /* background-color: blue; */
   /* min-width: 200px;
   max-width: 300px; */
   width: 100%;
@@ -132,11 +132,13 @@ select
   border-radius: 10px;
   padding:10px;
   font-size: 16px;
+  box-shadow: 0px 0px 20px rgba(96, 92, 92, 0.2); /* Smooth box shadow */
+
 }
 
 input
 {
-  background-color: orange;
+  /* background-color: orange; */
   min-width: 250px;
   width: 100%;
   /* min-width: 200px;
@@ -144,18 +146,19 @@ input
   border-radius: 10px;
   padding:10px;
   font-size: 16px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Smooth box shadow */
 }
 
-/* .resultValue
+.resultValue
 {
-display: flex;
-text-align: left;
-justify-content: left;
-} */
+  /* background-color: aqua; */
+  width: 100%;
+  padding: 20px;
+}
 
 .inputspan
 {
-  background-color: brown;
+  /* background-color: brown; */
   display: flex;
   text-align: left;
   justify-content: left;
@@ -165,26 +168,32 @@ justify-content: left;
 .equalto
 {
   left: 20%;
-  background-color: blue;
+  /* background-color: blue; */
   color: black;
 }
 .outputspan
 {
-  background-color: brown;
+  /* background-color: brown; */
   color: black;
   font-size: 25px;
   font-weight: bold;
 }
 
-
-
-/* button
+.buttonDiv
 {
+  /* background-color: yellow; */
+  width: 100%;
+  height: 25%;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+}
+
+
+button
+{
+  padding: 10px;
   width: 200px;
   display: block;
   background-color: blue;
@@ -192,6 +201,5 @@ justify-content: left;
   border-radius: 15px;
   border: 0;
   margin: 0 auto;
-} */
-
+}
 

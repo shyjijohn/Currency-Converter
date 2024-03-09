@@ -231,32 +231,30 @@ button {
 }
 
 .historical {
+  width: 90%;
   padding: 10px;
   display: flex;
   background-color: aqua;
   /* overflow: auto; */
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .historical-split 
 {
   display: flex;
   flex-direction: row;
-  align-items: space-around;
+  align-items: center;
   justify-content: space-around;
 }
 
 #datePicker {
-  padding: 10px;
-  width: 200px;
   display: block;
   background-color: white;
   color: black;
   border-radius: 15px;
   border: 0;
-  margin: 0 auto;
 }
 
 .infoText{
@@ -269,4 +267,25 @@ button {
   align-self: flex-start;
   color: black;
   margin: 5px;
+}
+
+.dateRanges
+{
+  /* background-color: blue; */
+}
+.dateRanges DateRangePicker
+{
+}
+.dateRangesList
+{
+  color: black;
+}
+
+.multiResult{
+  margin-left: 20px;
+}
+
+.eachDayResult
+{
+  margin-left: 20px;
 }

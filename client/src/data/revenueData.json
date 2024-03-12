@@ -1,0 +1,27 @@
+[
+    {
+        "label": "Jan",
+        "revenue": 53353,
+        "cost": 4556
+    },
+    {
+        "label": "Feb",
+        "revenue": 324234,
+        "cost": 4566
+    },
+    {
+        "label": "Mar",
+        "revenue": 5345,
+        "cost": 43534
+    },
+    {
+        "label": "Apr",
+        "revenue": 3465,
+        "cost": 65465
+    },
+    {
+        "label": "May",
+        "revenue": 5645,
+        "cost": 54353
+    }
+]

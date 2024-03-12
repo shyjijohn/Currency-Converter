@@ -1,6 +1,16 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
+import { Chart as ChartJS, defaults } from 'chart.js/auto';
+import { Line } from "react-chartjs-2";
+
+
+import revenueData from './data/revenueData.json'
+import sourceData from './data/sourceData.json'
+
+defaults.maintainAspectRatio = true; 
+defaults.responsive = true;
+
 
 export default function Graph(props) {
 
@@ -20,6 +30,15 @@ export default function Graph(props) {
     const [historicalRates, setHistoricalRates] = useState();
     const [isHistoricalRates, setIsHistoricalRates] = useState(false);
 
+
+    const [amountInGraph, setAmountInGraph] = useState();
+    const [baseInGraph, setBaseInGraph] = useState();
+    const [axisInGraph, setAxisInGraph] = useState();
+    const [graphXAxis, setGraphXAxis] = useState();
+    const [graphYAxis, setGraphYAxis] = useState();
+
+
+    console.log("....historicalRates...", historicalRates)
     // console.log("setSelectionRangeCom",   {selectionRange}  );
     // console.log("setSelectionRangeCom",   {selectionRange}  );
 
@@ -63,61 +82,143 @@ export default function Graph(props) {
             setHistoricalRates(historicalRatesForDateRange)
             console.log("historicalRatesForDateRange", historicalRatesForDateRange)
 
+            // {historicalRates.map(([key, value]) => {
+            //     setHistoricalRatesKey(key)
+            //     console.log("HistoricalRatesKey", historicalRatesKey)
+            //     setHistoricalRatesValue(value)
+            //     console.log("historicalRatesValue", historicalRatesValue)
+            // })}
+
+            var fetchingGraphRange = fetch(`https://api.frankfurter.app/${startDateInList}..${endDateInList}?to=USD`)
+            var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
+            fetchingGraphRangeJson.then((data) => {
+                console.log("jsondata for graphRange.....", data)
+        
+                const graphData = Object.entries(data)
+                // setHistoricalRates(graphData)
+                console.log("graphData", graphData)
+        
+                const graphDataAmount = graphData[0][1]
+                console.log("graphDataAmount", graphDataAmount)
+                setAmountInGraph(graphDataAmount)
+                console.log("amountInGraph", amountInGraph)
+        
+                const graphDataBase = graphData[1][1]
+                console.log("graphDataBase", graphDataBase)
+                setBaseInGraph(graphDataBase)
+                console.log("baseInGraph", baseInGraph)
+        
+        
+                const graphDataAxis = Object.entries(graphData[4][1])
+                console.log("graphDataAxis", graphDataAxis)
+                setAxisInGraph(graphDataAxis)
+                console.log("axisInGraph", axisInGraph)
+
+            //     const Axis = () => {
+                    
+            //      } 
+                
+                
+            //     (graphDataAxis).map(([XAxis, YAxis]) => {
+            //          console.log("XAxis", XAxis)
+            //         console.log("graphXAxis", graphXAxis)
+            //         // setGraphXAxis(XAxis)
+            //         // console.log("XAxis", XAxis)
+            //         // console.log("graphXAxis", graphXAxis)
+            //         setGraphYAxis(YAxis[1])
+            //         console.log("YAxis", YAxis)
+            //         console.log("graphYAxis", graphYAxis)
+
+            //     }
+                   
+            //       )}
+            // })
+
             setIsHistoricalRates(!isHistoricalRates)
+
+
+            
         })
-    }
+    
+    })}
+
+    // const historicalRatesInGraph = () => {
+    // var fetchingGraphRange = fetch(`https://api.frankfurter.app/2020-01-01..?to=USD`)
+    // var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
+    // fetchingGraphRangeJson.then((data) => {
+    //     console.log("jsondata for graphRange.....", data)
+
+    //     const graphData = Object.entries(data)
+    //     // setHistoricalRates(graphData)
+    //     console.log("graphData", graphData)
+
+    //     const graphDataAmount = graphData[0][1]
+    //     console.log("graphDataAmount", graphDataAmount)
+    //     setAmountInGraph(graphDataAmount)
+    //     console.log("amountInGraph", amountInGraph)
+
+    //     const graphDataBase = graphData[1][1]
+    //     console.log("graphDataBase", graphDataBase)
+    //     setBaseInGraph(graphDataBase)
+    //     console.log("baseInGraph", baseInGraph)
+
+
+    //     const graphDataAxis = Object.entries(graphData[4][1])
+    //     console.log("graphDataAxis", graphDataAxis)
+    //     // const graphDataBase = 
+    //     // const graphDataXAxis =
+    //     // const graphDataYAxis =
+    // })
+    // }
 
 
     return (
-        <div class="dateRanges">
+        <div>
+            <div class="dateRanges">
 
-            <DateRangePicker
-                ranges={[selectionRange]}
-                onChange={handleSelect}
-            />
-            <div class="dateRangesList">
-                Dates between {startDateInList} and {endDateInList}
+                <DateRangePicker
+                    ranges={[selectionRange]}
+                    onChange={handleSelect}
+                />
+                <div class="dateRangesList">
+                    Dates between {startDateInList} and {endDateInList}
 
-                <button onClick={historicalRatesForDatesGiven}>Historical Rates</button>
-                {isHistoricalRates && (
-                    <>
-                        <div className='infoText'><h4>RESULT</h4></div>
-                        <div className='infoText'>Amount: {historicalAmount}</div>
-                        <div className='infoText' >Base: {historicalBase}</div>
-                        <div className='infoTextOfRates'>Rates:
-                            <div className='multiResult'>
-                                {
-                                    historicalRates.map(([key, value]) => {
-                                        // console.log("Valuefrom map ", value)
-                                        return (
-                                            // <li key={key}>
-                                            <div >
-                                                <strong>{key}:</strong>
-                                                {
-                                                    Object.entries(value).map(([keyOfObj, valueOfObj]) => {
-                                                        // console.log("keyOfObj: ", keyOfObj);
-                                                        // console.log("valueOfObj: ", valueOfObj);
-                                                        return (
-                                                            // <li key={keyOfObj}>
-                                                            <div className='eachDayResult'>
-                                                                <div>{keyOfObj}:{valueOfObj}</div>
-                                                                <br />
-                                                            </div>
-                                                            // </li>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            // </li>
-                                        )
-                                    })}
-                            </div>
-                        </div>
-                    </>
-                )}
+                    <button onClick={historicalRatesForDatesGiven}>Historical Rates In Graph</button>
+                    {isHistoricalRates && (
+                        
+                        <>
+                         <Line data={{
+                        labels: axisInGraph.map(([key, value]) => key),
+                        datasets: [
+                            {
+                                label: "Currency",
+                                data: axisInGraph.map(([key, value]) => value.USD),
+                                backgroundColor: "rgba(255, 122, 255)",
+                                borderColor: "rgba(255, 132, 123)",
+                            },
+                        ]
+                    }}
+                    options={{
+                        elements: {
+                            line: {
+                                tension: 0.5
+                            }
+                        }
+                    }}
+                    />
+                        </>
+                    )}
+
+                </div>
 
             </div>
+            {/* <div className='Line-Chart'>
+                {isHistoricalRates && (
 
+                   
+
+                )}
+            </div> */}
         </div>
     )
 }

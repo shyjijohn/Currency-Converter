@@ -1,3 +1,6 @@
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
@@ -36,6 +39,11 @@ export default function Graph(props) {
     const [axisInGraph, setAxisInGraph] = useState();
     const [graphXAxis, setGraphXAxis] = useState();
     const [graphYAxis, setGraphYAxis] = useState();
+
+
+    const [optionsInGraph, setOptionsInGraph] = useState([]);
+    const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('')
+    const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('')
 
 
     console.log("....historicalRates...", historicalRates)
@@ -142,40 +150,54 @@ export default function Graph(props) {
     
     })}
 
-    // const historicalRatesInGraph = () => {
-    // var fetchingGraphRange = fetch(`https://api.frankfurter.app/2020-01-01..?to=USD`)
-    // var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
-    // fetchingGraphRangeJson.then((data) => {
-    //     console.log("jsondata for graphRange.....", data)
+    function fetchDataFromServerForGraph() {
+        var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
+        var jsonMakingPromise = fetchPromise.then((data) => data.json())
+        jsonMakingPromise.then((data) => {
+          // console.log("data before changing: ", data)
+          const entries = Object.entries(data)
+          //data will have json
+          // console.log("data1 : ", entries)
+          // console.log("data2 : "  + entries)
+          setOptionsInGraph(entries)
+          console.log("entries : ", entries)
+          setSelectedInputCurrencyInGraph(entries[9][0])
+          console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+          setSelectedOutputCurrencyInGraph(entries[14][0])
+          console.log("setSelectedInputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+        })
+      }
+    
+    
+      useEffect(() => {
+        fetchDataFromServerForGraph()
+        console.log("fetchDataFromServerForGraph...")
+      }, [])
 
-    //     const graphData = Object.entries(data)
-    //     // setHistoricalRates(graphData)
-    //     console.log("graphData", graphData)
-
-    //     const graphDataAmount = graphData[0][1]
-    //     console.log("graphDataAmount", graphDataAmount)
-    //     setAmountInGraph(graphDataAmount)
-    //     console.log("amountInGraph", amountInGraph)
-
-    //     const graphDataBase = graphData[1][1]
-    //     console.log("graphDataBase", graphDataBase)
-    //     setBaseInGraph(graphDataBase)
-    //     console.log("baseInGraph", baseInGraph)
-
-
-    //     const graphDataAxis = Object.entries(graphData[4][1])
-    //     console.log("graphDataAxis", graphDataAxis)
-    //     // const graphDataBase = 
-    //     // const graphDataXAxis =
-    //     // const graphDataYAxis =
-    // })
-    // }
-
-
+      console.log("options in graph...", optionsInGraph)
     return (
         <div>
             <div class="dateRanges">
+                <div class="from-to">
+                <select value={selectedInputCurrencyInGraph}>  {
+                  optionsInGraph.map((option) => {
+                    // console.log(option)
+                    return (
+                      <option key={option[0]} value={option[0]}>{option[0]}</option>
+                    )
 
+                  })
+                }</select>
+                <select value={selectedOutputCurrencyInGraph}>  {
+                  optionsInGraph.map((option) => {
+                    // console.log(option)
+                    return (
+                      <option key={option[0]} value={option[0]}>{option[0]}</option>
+                    )
+
+                  })
+                }</select>
+                </div>
                 <DateRangePicker
                     ranges={[selectionRange]}
                     onChange={handleSelect}

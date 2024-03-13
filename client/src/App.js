@@ -21,7 +21,7 @@ function App() {
 
   const [inputCurrencyValue, setInputCurrencyValue] = useState('')
   const [convertedValue, setConvertedValue] = useState('')
-  const [selectedInputCurrency, setSelectedInputCurrency] = useState('fgfgf')
+  const [selectedInputCurrency, setSelectedInputCurrency] = useState('')
   const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('')
   const [selectedInputCurrencyKey, setSelectedInputCurrencyKey] = useState('')
   const [selectedOutputCurrencyKey, setSelectedOutputCurrencyKey] = useState('')
@@ -144,7 +144,7 @@ function App() {
       <div class="background">
         <h1>Currency Converter</h1>
         <div class="box">
-          <Graph handleDateFormat = {handleDateFormat}/>
+          <Graph />
           <div class="app-bar">
             <nav>
               <ul>

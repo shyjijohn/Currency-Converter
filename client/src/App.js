@@ -144,7 +144,9 @@ function App() {
       <div class="background">
         <h1>Currency Converter</h1>
         <div class="box">
-          <Graph />
+          <Graph 
+          handleDateFormat = {handleDateFormat} 
+          />
           <div class="app-bar">
             <nav>
               <ul>

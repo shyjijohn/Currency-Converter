@@ -46,6 +46,13 @@ export default function Graph(props) {
     const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('')
 
 
+    const keyAsGBP = 'GBP';
+    const keyAsINR = 'INR';
+
+
+    const [selectedInputCurrencyChange, setSelectedInputCurrencyChange] = useState('')
+    const [selectedOutputCurrencyChange, setSelectedOutputCurrencyChange] = useState('')
+
     console.log("....historicalRates...", historicalRates)
     // console.log("setSelectionRangeCom",   {selectionRange}  );
     // console.log("setSelectionRangeCom",   {selectionRange}  );
@@ -161,10 +168,58 @@ export default function Graph(props) {
           // console.log("data2 : "  + entries)
           setOptionsInGraph(entries)
           console.log("entries : ", entries)
-          setSelectedInputCurrencyInGraph(entries[9][0])
-          console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
-          setSelectedOutputCurrencyInGraph(entries[14][0])
-          console.log("setSelectedInputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+
+          let valueOfGBP;
+          let valueOfINR;
+          for (let i = 0; i < entries.length; i++) {
+            const innerEntries = entries[i];
+          if(innerEntries.includes(keyAsGBP))
+          {
+            // const indexOfGBP = entries.indexOf(keyAsGBP)
+             valueOfGBP = keyAsGBP;
+        //     console.log("setSelectedInputCurrencyInGraph : ", value)
+        //     setSelectedInputCurrencyInGraph(value)
+        //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+          }
+          else if(innerEntries.includes(keyAsINR))
+          {
+             valueOfINR = keyAsINR;
+
+        //     const value = entries[0][0];
+        //     console.log("setSelectedInputCurrencyInGraph : ", value)
+        //     setSelectedInputCurrencyInGraph(value)
+        //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+          }
+        }
+
+        if (valueOfGBP !== undefined) 
+        {
+            console.log("setSelectedInputCurrencyInGraph : ", valueOfGBP)
+            setSelectedInputCurrencyInGraph(valueOfGBP)
+            console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+        }
+
+        if (valueOfINR !== undefined) 
+        {
+            console.log("setSelectedOutputCurrencyInGraph : ", valueOfINR)
+            setSelectedOutputCurrencyInGraph(valueOfINR)
+            console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+        }
+        //   if(entries.includes(keyAsINR))
+        //   {
+        //     const indexOfINR = entries.indexOf(keyAsINR)
+        //     const value = entries[indexOfINR];
+        //     console.log("setSelectedOutputCurrencyInGraph : ", value)
+        //     setSelectedOutputCurrencyInGraph(value)
+        //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+        //   }
+        //   else
+        //   {
+        //     const value = entries[0][0];
+        //     console.log("setSelectedOutputCurrencyInGraph : ", value)
+        //     setSelectedOutputCurrencyInGraph(value)
+        //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+        //   }
         })
       }
     
@@ -175,11 +230,25 @@ export default function Graph(props) {
       }, [])
 
       console.log("options in graph...", optionsInGraph)
+
+      function handleSelectCurrencyChange1(e) {
+
+        const selectedOptionKey = e.target.getAttribute('key')
+        console.log("selectedOptionKey", selectedOptionKey)
+        setSelectedInputCurrencyChange(e.target.value);
+        console.log("selectedInputCurrencyChange", e.target.value)
+      }
+    
+      function handleSelectCurrencyChange2(e) {
+        setSelectedOutputCurrencyChange(e.target.value);
+        console.log("selectedOutputCurrencyChange", e.target.value)
+      }
+
     return (
         <div>
             <div class="dateRanges">
                 <div class="from-to">
-                <select value={selectedInputCurrencyInGraph}>  {
+                <select value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>  {
                   optionsInGraph.map((option) => {
                     // console.log(option)
                     return (
@@ -188,7 +257,7 @@ export default function Graph(props) {
 
                   })
                 }</select>
-                <select value={selectedOutputCurrencyInGraph}>  {
+                <select value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>  {
                   optionsInGraph.map((option) => {
                     // console.log(option)
                     return (

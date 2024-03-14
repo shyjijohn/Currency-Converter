@@ -42,16 +42,14 @@ export default function Graph(props) {
 
 
     const [optionsInGraph, setOptionsInGraph] = useState([]);
-    const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('')
-    const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('')
+    const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState(()=>graphInputCurrency());
+    const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState(()=>graphOutputCurrency());
 
 
-    const keyAsGBP = 'GBP';
-    const keyAsINR = 'INR';
 
 
-    const [selectedInputCurrencyChange, setSelectedInputCurrencyChange] = useState('')
-    const [selectedOutputCurrencyChange, setSelectedOutputCurrencyChange] = useState('')
+    // const [selectedInputCurrencyChange, setSelectedInputCurrencyChange] = useState('')
+    // const [selectedOutputCurrencyChange, setSelectedOutputCurrencyChange] = useState('')
 
     console.log("....historicalRates...", historicalRates)
     // console.log("setSelectionRangeCom",   {selectionRange}  );
@@ -63,6 +61,13 @@ export default function Graph(props) {
     useEffect(() => {
         console.log("useEffect running for dateRange...");
     }, [endDateInList])
+
+    useEffect(() => {
+        console.log("useEffect running for selectedInputCurrencyInGraph...");
+    }, [selectedInputCurrencyInGraph])
+    useEffect(() => {
+        console.log("useEffect running for selectedOutputCurrencyInGraph...");
+    }, [selectedOutputCurrencyInGraph])
 
     const handleSelect = (ranges) => {
         setSelectionRange(ranges.selection);
@@ -78,24 +83,24 @@ export default function Graph(props) {
     };
 
     const historicalRatesForDatesGiven = () => {
-        var fetchingDateRange = fetch(`https://api.frankfurter.app/${startDateInList}..${endDateInList}`)
-        var fetchingDateRangeJson = fetchingDateRange.then((data) => data.json())
-        fetchingDateRangeJson.then((data) => {
-            console.log("jsondata for dataRange.....", data)
-            const valuesOfdateRange = Object.values(data)
-            console.log("valuesOfdateRange", valuesOfdateRange)
+        // var fetchingDateRange = fetch(`https://api.frankfurter.app/${startDateInList}..${endDateInList}`)
+        // var fetchingDateRangeJson = fetchingDateRange.then((data) => data.json())
+        // fetchingDateRangeJson.then((data) => {
+        //     console.log("jsondata for dataRange.....", data)
+        //     const valuesOfdateRange = Object.values(data)
+        //     console.log("valuesOfdateRange", valuesOfdateRange)
 
-            const amountForDateRange = valuesOfdateRange[0]
-            setHistoricalAmount(amountForDateRange)
-            console.log("amountForDateRange", amountForDateRange)
+        //     const amountForDateRange = valuesOfdateRange[0]
+        //     setHistoricalAmount(amountForDateRange)
+        //     console.log("amountForDateRange", amountForDateRange)
 
-            const baseForDateRange = valuesOfdateRange[1]
-            setHistoricalBase(baseForDateRange)
-            console.log("baseForDateRange", baseForDateRange)
+        //     const baseForDateRange = valuesOfdateRange[1]
+        //     setHistoricalBase(baseForDateRange)
+        //     console.log("baseForDateRange", baseForDateRange)
 
-            const historicalRatesForDateRange = Object.entries(valuesOfdateRange[4])
-            setHistoricalRates(historicalRatesForDateRange)
-            console.log("historicalRatesForDateRange", historicalRatesForDateRange)
+        //     const historicalRatesForDateRange = Object.entries(valuesOfdateRange[4])
+        //     setHistoricalRates(historicalRatesForDateRange)
+        //     console.log("historicalRatesForDateRange", historicalRatesForDateRange)
 
             // {historicalRates.map(([key, value]) => {
             //     setHistoricalRatesKey(key)
@@ -153,94 +158,167 @@ export default function Graph(props) {
 
 
             
-        })
+        // })
     
     })}
 
-    function fetchDataFromServerForGraph() {
-        var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
-        var jsonMakingPromise = fetchPromise.then((data) => data.json())
-        jsonMakingPromise.then((data) => {
-          // console.log("data before changing: ", data)
-          const entries = Object.entries(data)
-          //data will have json
-          // console.log("data1 : ", entries)
-          // console.log("data2 : "  + entries)
-          setOptionsInGraph(entries)
-          console.log("entries : ", entries)
+    // function fetchDataFromServerForGraph() {
+    //     var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
+    //     var jsonMakingPromise = fetchPromise.then((data) => data.json())
+    //     jsonMakingPromise.then((data) => {
+    //       // console.log("data before changing: ", data)
+    //       const entries = Object.entries(data)
+    //       //data will have json
+    //       // console.log("data1 : ", entries)
+    //       // console.log("data2 : "  + entries)
+    //       setOptionsInGraph(entries)
+    //       console.log("entries : ", entries)
 
-          let valueOfGBP;
-          let valueOfINR;
-          for (let i = 0; i < entries.length; i++) {
-            const innerEntries = entries[i];
+
+
+    function graphInputCurrency() 
+    {
+        const keyAsGBP = 'GBP';
+        let valueOfGBP;
+        console.log("props.entries.....1............: " + props.entries)
+
+        for (let i = 0; i < props.entries.length; i++) {
+            const innerEntries = props.entries[i];
+            console.log("innerEntries..1..: " + innerEntries)
+
           if(innerEntries.includes(keyAsGBP))
           {
-            // const indexOfGBP = entries.indexOf(keyAsGBP)
-             valueOfGBP = keyAsGBP;
-        //     console.log("setSelectedInputCurrencyInGraph : ", value)
-        //     setSelectedInputCurrencyInGraph(value)
-        //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+            valueOfGBP = keyAsGBP;
+            console.log("valueOfGBP..1..: " + valueOfGBP)
+            break
           }
-          else if(innerEntries.includes(keyAsINR))
+        //   else 
+        // {
+        //     valueOfGBP = innerEntries[0];
+        //     console.log("valueOfGBP..2..: " + valueOfGBP)
+        //     // console.log("valueOfGBP : ", valueOfGBP)
+        //     // setSelectedInputCurrencyInGraph(valueOfGBP)
+        //     // console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+        //     return valueOfGBP;
+        // }
+    }
+    console.log("valueOfGBP.................: " + valueOfGBP)
+    return valueOfGBP;
+}
+
+
+    function graphOutputCurrency() 
+    {
+        const keyAsINR = 'INR';
+
+        let valueOfINR;
+        console.log("props.entries.....2............: " + props.entries)
+
+        for (let i = 0; i < props.entries.length; i++) {
+            const innerEntries = props.entries[i];
+            console.log("innerEntries..2..: " + innerEntries)
+
+          if(innerEntries.includes(keyAsINR))
           {
-             valueOfINR = keyAsINR;
-
-        //     const value = entries[0][0];
-        //     console.log("setSelectedInputCurrencyInGraph : ", value)
-        //     setSelectedInputCurrencyInGraph(value)
-        //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
-          }
+            valueOfINR = keyAsINR;
+            console.log("valueOfINR..1..: " + valueOfINR)
+            break
         }
+        // else
+        // {
+        //     valueOfINR = innerEntries[0];
+        //     console.log("valueOfINR..2..: " + valueOfINR)
+        //     return valueOfINR; 
+        // }
 
-        if (valueOfGBP !== undefined) 
-        {
-            console.log("setSelectedInputCurrencyInGraph : ", valueOfGBP)
-            setSelectedInputCurrencyInGraph(valueOfGBP)
-            console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
-        }
+        // if (valueOfINR !== undefined) 
+        // {
+        //     console.log("valueOfINR: " + valueOfINR)
+            // console.log("valueOfINR : ", valueOfINR)
+            // setSelectedOutputCurrencyInGraph(valueOfINR)
+            // console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+        // }
+    }
+    console.log("valueOfINR.................: " + valueOfINR)
+    return valueOfINR;
+    }
 
-        if (valueOfINR !== undefined) 
-        {
-            console.log("setSelectedOutputCurrencyInGraph : ", valueOfINR)
-            setSelectedOutputCurrencyInGraph(valueOfINR)
-            console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
-        }
-        //   if(entries.includes(keyAsINR))
-        //   {
-        //     const indexOfINR = entries.indexOf(keyAsINR)
-        //     const value = entries[indexOfINR];
-        //     console.log("setSelectedOutputCurrencyInGraph : ", value)
-        //     setSelectedOutputCurrencyInGraph(value)
-        //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
-        //   }
-        //   else
-        //   {
-        //     const value = entries[0][0];
-        //     console.log("setSelectedOutputCurrencyInGraph : ", value)
-        //     setSelectedOutputCurrencyInGraph(value)
-        //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
-        //   }
-        })
-      }
+    // useEffect(() => {
+    
+    //       let valueOfGBP;
+    //       let valueOfINR;
+    //       for (let i = 0; i < props.entries.length; i++) {
+    //         const innerEntries = props.entries[i];
+    //       if(innerEntries.includes(keyAsGBP))
+    //       {
+    //         // const indexOfGBP = entries.indexOf(keyAsGBP)
+    //          valueOfGBP = keyAsGBP;
+    //     //     console.log("setSelectedInputCurrencyInGraph : ", value)
+    //     //     setSelectedInputCurrencyInGraph(value)
+    //     //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+    //       }
+    //       else if(innerEntries.includes(keyAsINR))
+    //       {
+    //          valueOfINR = keyAsINR;
+
+    //     //     const value = entries[0][0];
+    //     //     console.log("setSelectedInputCurrencyInGraph : ", value)
+    //     //     setSelectedInputCurrencyInGraph(value)
+    //     //   console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+    //       }
+    //     }
+
+    //     if (valueOfGBP !== undefined) 
+    //     {
+    //         console.log("valueOfGBP : ", valueOfGBP)
+    //         setSelectedInputCurrencyInGraph(valueOfGBP)
+    //         console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+    //     }
+
+    //     if (valueOfINR !== undefined) 
+    //     {
+    //         console.log("valueOfINR : ", valueOfINR)
+    //         setSelectedOutputCurrencyInGraph(valueOfINR)
+    //         console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+    //     }
+    //     //   if(entries.includes(keyAsINR))
+    //     //   {
+    //     //     const indexOfINR = entries.indexOf(keyAsINR)
+    //     //     const value = entries[indexOfINR];
+    //     //     console.log("setSelectedOutputCurrencyInGraph : ", value)
+    //     //     setSelectedOutputCurrencyInGraph(value)
+    //     //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+    //     //   }
+    //     //   else
+    //     //   {
+    //     //     const value = entries[0][0];
+    //     //     console.log("setSelectedOutputCurrencyInGraph : ", value)
+    //     //     setSelectedOutputCurrencyInGraph(value)
+    //     //   console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+    //     //   }
+    // //     })
+    // //   }
     
     
-      useEffect(() => {
-        fetchDataFromServerForGraph()
-        console.log("fetchDataFromServerForGraph...")
-      }, [])
+    // //   useEffect(() => {
+    // //     fetchDataFromServerForGraph()
+    // //     console.log("fetchDataFromServerForGraph...")
+    // //   }, [])
 
-      console.log("options in graph...", optionsInGraph)
+    //   console.log("options in graph...", props.entries)
+    // }, [])
+
 
       function handleSelectCurrencyChange1(e) {
 
         const selectedOptionKey = e.target.getAttribute('key')
         console.log("selectedOptionKey", selectedOptionKey)
-        setSelectedInputCurrencyChange(e.target.value);
+        setSelectedInputCurrencyInGraph(e.target.value);
         console.log("selectedInputCurrencyChange", e.target.value)
       }
     
       function handleSelectCurrencyChange2(e) {
-        setSelectedOutputCurrencyChange(e.target.value);
+        setSelectedOutputCurrencyInGraph(e.target.value);
         console.log("selectedOutputCurrencyChange", e.target.value)
       }
 
@@ -249,7 +327,7 @@ export default function Graph(props) {
             <div class="dateRanges">
                 <div class="from-to">
                 <select value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>  {
-                  optionsInGraph.map((option) => {
+                  props.entries.map((option) => {
                     // console.log(option)
                     return (
                       <option key={option[0]} value={option[0]}>{option[0]}</option>
@@ -258,7 +336,7 @@ export default function Graph(props) {
                   })
                 }</select>
                 <select value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>  {
-                  optionsInGraph.map((option) => {
+                  props.entries.map((option) => {
                     // console.log(option)
                     return (
                       <option key={option[0]} value={option[0]}>{option[0]}</option>

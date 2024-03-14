@@ -109,7 +109,7 @@ export default function Graph(props) {
             //     console.log("historicalRatesValue", historicalRatesValue)
             // })}
 
-            var fetchingGraphRange = fetch(`https://api.frankfurter.app/${startDateInList}..${endDateInList}?to=USD`)
+            var fetchingGraphRange = fetch(`https://api.frankfurter.app/${startDateInList}..${endDateInList}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
             var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
             fetchingGraphRangeJson.then((data) => {
                 console.log("jsondata for graphRange.....", data)
@@ -361,7 +361,7 @@ export default function Graph(props) {
                         datasets: [
                             {
                                 label: "Currency",
-                                data: axisInGraph.map(([key, value]) => value.USD),
+                                data: axisInGraph.map(([key, value]) => value[selectedOutputCurrencyInGraph]),
                                 backgroundColor: "rgba(255, 122, 255)",
                                 borderColor: "rgba(255, 132, 123)",
                             },

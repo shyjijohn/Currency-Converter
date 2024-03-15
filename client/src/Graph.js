@@ -2,7 +2,10 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { getFormattedDateString } from './utility';
+import AppContext, { useCurrencies } from './AppContext';
+
 import { DateRangePicker } from 'react-date-range';
 import { Chart as ChartJS, defaults } from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
@@ -17,6 +20,7 @@ defaults.responsive = true;
 
 export default function Graph(props) {
 
+    const currencies = useCurrencies()
 
     // date range  
 
@@ -42,8 +46,8 @@ export default function Graph(props) {
 
 
     const [optionsInGraph, setOptionsInGraph] = useState([]);
-    const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState(()=>graphInputCurrency());
-    const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState(()=>graphOutputCurrency());
+    const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('GBP');
+    const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('INR');
 
 
 
@@ -73,11 +77,11 @@ export default function Graph(props) {
         setSelectionRange(ranges.selection);
         console.log("setSelectionRange", ranges.selection);
 
-        const startDateRangePicker = props.handleDateFormat(ranges.selection.startDate);
+        const startDateRangePicker = getFormattedDateString(ranges.selection.startDate);
         setStartDateInList(startDateRangePicker);
         console.log("startDateInList....1...." + startDateRangePicker)
 
-        const endDateRangePicker = props.handleDateFormat(ranges.selection.endDate);
+        const endDateRangePicker = getFormattedDateString(ranges.selection.endDate);
         setEndDateInList(endDateRangePicker);
         console.log("endDateInList....1...." + endDateRangePicker)
     };
@@ -176,72 +180,73 @@ export default function Graph(props) {
 
 
 
-    function graphInputCurrency() 
-    {
-        const keyAsGBP = 'GBP';
-        let valueOfGBP;
-        console.log("props.entries.....1............: " + props.entries)
+//     function graphInputCurrency() 
+//     {
+//         const keyAsGBP = 'GBP';
+//         return keyAsGBP
+//         let valueOfGBP;
+//         console.log("props.entries.....1............: " + props.entries)
 
-        for (let i = 0; i < props.entries.length; i++) {
-            const innerEntries = props.entries[i];
-            console.log("innerEntries..1..: " + innerEntries)
+//         for (let i = 0; i < props.entries.length; i++) {
+//             const innerEntries = props.entries[i];
+//             console.log("innerEntries..1..: " + innerEntries)
 
-          if(innerEntries.includes(keyAsGBP))
-          {
-            valueOfGBP = keyAsGBP;
-            console.log("valueOfGBP..1..: " + valueOfGBP)
-            break
-          }
-        //   else 
-        // {
-        //     valueOfGBP = innerEntries[0];
-        //     console.log("valueOfGBP..2..: " + valueOfGBP)
-        //     // console.log("valueOfGBP : ", valueOfGBP)
-        //     // setSelectedInputCurrencyInGraph(valueOfGBP)
-        //     // console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
-        //     return valueOfGBP;
-        // }
-    }
-    console.log("valueOfGBP.................: " + valueOfGBP)
-    return valueOfGBP;
-}
+//           if(innerEntries.includes(keyAsGBP))
+//           {
+//             valueOfGBP = keyAsGBP;
+//             console.log("valueOfGBP..1..: " + valueOfGBP)
+//             break
+//           }
+//         //   else 
+//         // {
+//         //     valueOfGBP = innerEntries[0];
+//         //     console.log("valueOfGBP..2..: " + valueOfGBP)
+//         //     // console.log("valueOfGBP : ", valueOfGBP)
+//         //     // setSelectedInputCurrencyInGraph(valueOfGBP)
+//         //     // console.log("setSelectedInputCurrencyInGraph : ", selectedInputCurrencyInGraph)
+//         //     return valueOfGBP;
+//         // }
+//     }
+//     console.log("valueOfGBP.................: " + valueOfGBP)
+//     return valueOfGBP;
+// }
 
 
-    function graphOutputCurrency() 
-    {
-        const keyAsINR = 'INR';
+    // function graphOutputCurrency() 
+    // {
+    //     const keyAsINR = 'INR';
 
-        let valueOfINR;
-        console.log("props.entries.....2............: " + props.entries)
+    //     let valueOfINR;
+    //     console.log("props.entries.....2............: " + props.entries)
 
-        for (let i = 0; i < props.entries.length; i++) {
-            const innerEntries = props.entries[i];
-            console.log("innerEntries..2..: " + innerEntries)
+    //     for (let i = 0; i < props.entries.length; i++) {
+    //         const innerEntries = props.entries[i];
+    //         console.log("innerEntries..2..: " + innerEntries)
 
-          if(innerEntries.includes(keyAsINR))
-          {
-            valueOfINR = keyAsINR;
-            console.log("valueOfINR..1..: " + valueOfINR)
-            break
-        }
-        // else
-        // {
-        //     valueOfINR = innerEntries[0];
-        //     console.log("valueOfINR..2..: " + valueOfINR)
-        //     return valueOfINR; 
-        // }
+    //       if(innerEntries.includes(keyAsINR))
+    //       {
+    //         valueOfINR = keyAsINR;
+    //         console.log("valueOfINR..1..: " + valueOfINR)
+    //         break
+    //     }
+    //     // else
+    //     // {
+    //     //     valueOfINR = innerEntries[0];
+    //     //     console.log("valueOfINR..2..: " + valueOfINR)
+    //     //     return valueOfINR; 
+    //     // }
 
-        // if (valueOfINR !== undefined) 
-        // {
-        //     console.log("valueOfINR: " + valueOfINR)
-            // console.log("valueOfINR : ", valueOfINR)
-            // setSelectedOutputCurrencyInGraph(valueOfINR)
-            // console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
-        // }
-    }
-    console.log("valueOfINR.................: " + valueOfINR)
-    return valueOfINR;
-    }
+    //     // if (valueOfINR !== undefined) 
+    //     // {
+    //     //     console.log("valueOfINR: " + valueOfINR)
+    //         // console.log("valueOfINR : ", valueOfINR)
+    //         // setSelectedOutputCurrencyInGraph(valueOfINR)
+    //         // console.log("setSelectedOutputCurrencyInGraph : ", selectedOutputCurrencyInGraph)
+    //     // }
+    // }
+    // console.log("valueOfINR.................: " + valueOfINR)
+    // return valueOfINR;
+    // }
 
     // useEffect(() => {
     
@@ -327,7 +332,7 @@ export default function Graph(props) {
             <div class="dateRanges">
                 <div class="from-to">
                 <select value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>  {
-                  props.entries.map((option) => {
+                  currencies.map((option) => {
                     // console.log(option)
                     return (
                       <option key={option[0]} value={option[0]}>{option[0]}</option>
@@ -336,7 +341,7 @@ export default function Graph(props) {
                   })
                 }</select>
                 <select value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>  {
-                  props.entries.map((option) => {
+                  currencies.map((option) => {
                     // console.log(option)
                     return (
                       <option key={option[0]} value={option[0]}>{option[0]}</option>

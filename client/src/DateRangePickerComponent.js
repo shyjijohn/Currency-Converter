@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
+import { getFormattedDateString } from './utility';
 
 export default function DateRangePickerComponent(props) {
 
@@ -32,11 +33,11 @@ export default function DateRangePickerComponent(props) {
         setSelectionRange(ranges.selection);
         console.log("setSelectionRange", ranges.selection);
 
-        const startDateRangePicker = props.handleDateFormat(ranges.selection.startDate);
+        const startDateRangePicker = getFormattedDateString(ranges.selection.startDate);
         setStartDateInList(startDateRangePicker);
         console.log("startDateInList....1...." + startDateRangePicker)
 
-        const endDateRangePicker = props.handleDateFormat(ranges.selection.endDate);
+        const endDateRangePicker = getFormattedDateString(ranges.selection.endDate);
         setEndDateInList(endDateRangePicker);
         console.log("endDateInList....1...." + endDateRangePicker)
     };

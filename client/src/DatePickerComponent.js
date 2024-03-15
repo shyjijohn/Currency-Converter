@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { getFormattedDateString } from './utility';
 
 export default function DatePickerComponent(props) {
 
@@ -19,7 +20,7 @@ useEffect(() => {
 
 
 const handleDateChange = (date) => {
-  const datePickerDate = props.handleDateFormat(date);
+  const datePickerDate = getFormattedDateString(date);
   setSelectedDate(datePickerDate);
   console.log("setSelectedDate2" + selectedDate)
 };

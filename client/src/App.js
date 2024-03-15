@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { DateRangePicker } from 'react-date-range';
@@ -8,21 +8,23 @@ import 'react-date-range/dist/theme/default.css';
 import Graph from './Graph';
 import DateRangePickerComponent from './DateRangePickerComponent';
 import DatePickerComponent from './DatePickerComponent';
+import AppContext, { useCurrencies } from './AppContext';
 
 
 
 function App() {
 
+  const currencies = useCurrencies()
 
   console.log("Starting APP")
 
-  const [options, setOptions] = useState([])
+  // const [options, setOptions] = useState([])
   //console.log("options: ", options)
 
   const [inputCurrencyValue, setInputCurrencyValue] = useState('')
   const [convertedValue, setConvertedValue] = useState('')
-  const [selectedInputCurrency, setSelectedInputCurrency] = useState('')
-  const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('')
+  const [selectedInputCurrency, setSelectedInputCurrency] = useState('USD')
+  const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('GBP')
   const [selectedInputCurrencyKey, setSelectedInputCurrencyKey] = useState('')
   const [selectedOutputCurrencyKey, setSelectedOutputCurrencyKey] = useState('')
   const [equalto, setEqualTo] = useState('=')
@@ -40,28 +42,28 @@ function App() {
     setActiveId(id);
   };
 
-  function fetchDataFromServer() {
-    var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
-    var jsonMakingPromise = fetchPromise.then((data) => data.json())
-    jsonMakingPromise.then((data) => {
-      // console.log("data before changing: ", data)
-      const entries = Object.entries(data)
-      //data will have json
-      // console.log("data1 : ", entries)
-      // console.log("data2 : "  + entries)
-      setOptions(entries)
-      console.log("entries : ", entries)
-      setSelectedInputCurrency(entries[0][0])
-      console.log("setSelectedInputCurrency : ", selectedInputCurrency)
-      setSelectedOutputCurrency(entries[0][0])
-      console.log("setSelectedInputCurrency : ", selectedOutputCurrency)
-    })
-  }
+  // function fetchDataFromServer() {
+  //   var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
+  //   var jsonMakingPromise = fetchPromise.then((data) => data.json())
+  //   jsonMakingPromise.then((data) => {
+  //     // console.log("data before changing: ", data)
+  //     const entries = Object.entries(data)
+  //     //data will have json
+  //     // console.log("data1 : ", entries)
+  //     // console.log("data2 : "  + entries)
+  //     setOptions(entries)
+  //     console.log("entries : ", entries)
+  //     // setSelectedInputCurrency(entries[0][0])
+  //     // console.log("setSelectedInputCurrency : ", selectedInputCurrency)
+  //     // setSelectedOutputCurrency(entries[0][0])
+  //     // console.log("setSelectedInputCurrency : ", selectedOutputCurrency)
+  //   })
+  // }
 
 
-  useEffect(() => {
-    fetchDataFromServer()
-  }, [])
+  // useEffect(() => {
+  //   fetchDataFromServer()
+  // }, [])
 
   function handleTextBoxChange(e) {
     setInputCurrencyValue(e.target.value);
@@ -113,22 +115,7 @@ function App() {
   }
   console.log("Returning APP")
 
-  
-  const handleDateFormat = (date) => {
-    // setSelectedDate(date);
-    console.log("setSelectedDate1" + date)
-  
-    console.log("Now its Combined of Date and Time...." + date);
-    var year = date.getFullYear();
-    console.log("Now its year....", year);
-  
-    var month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    var day = String(date.getDate()).padStart(2, '0');
-    var dateChosen = `${year}-${month}-${day}`;
-  
-    return dateChosen
-  
-  };
+
 
 
 
@@ -138,80 +125,76 @@ function App() {
     //set the heading convert and charts
     //position the textboxes
     //display the converted currency value
-
-
-    <div class="parent">
-      <div class="background">
-        <h1>Currency Converter</h1>
-        <div class="box">
-          <Graph 
-          entries = {options}
-          handleDateFormat = {handleDateFormat} 
-          />
-          <div class="app-bar">
-            <nav>
-              <ul>
-                {items.map((item) => (
-                  <li key={item.id}
-                    onClick={() => handleItemClick(item.id)}
-                    className={activeId === item.id ? "activeLi" : ""}>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-          <div class="stacking">
-            <div class="amountDiv">
-              <div class="amount">Amount</div>
-              <input type="number" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
+      <div class="parent">
+        <div class="background">
+          <h1>Currency Converter</h1>
+          <div class="box">
+            <Graph
+            />
+            <div class="app-bar">
+              <nav>
+                <ul>
+                  {items.map((item) => (
+                    <li key={item.id}
+                      onClick={() => handleItemClick(item.id)}
+                      className={activeId === item.id ? "activeLi" : ""}>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
-            <div class="fromDiv">
-              <div class="from">From</div>
-              <select value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
-                {
-                  options.map((option) => {
-                    // console.log(option)
-                    return (
-                      <option key={option[0]} value={option[0]}>{option[0]}</option>
-                    )
+            <div class="stacking">
+              <div class="amountDiv">
+                <div class="amount">Amount</div>
+                <input type="number" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
+              </div>
+              <div class="fromDiv">
+                <div class="from">From</div>
+                <select value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
+                  {
+                    currencies.map((option) => {
+                      // console.log(option)
+                      return (
+                        <option key={option[0]} value={option[0]}>{option[0]}</option>
+                      )
 
-                  })
-                }
-              </select>
+                    })
+                  }
+                </select>
+              </div>
+
+              <div class="toDiv">
+                <div class="to">To</div>
+                <select value={selectedOutputCurrency} onChange={handleSelectChange2}>
+                  {
+                    currencies.map((option) => {
+                      // console.log(option)
+                      return (
+                        <option key={option[0]} value={option[0]}>{option[0]}</option>
+                      )
+                    })
+                  }
+                </select>
+              </div>
             </div>
 
-            <div class="toDiv">
-              <div class="to">To</div>
-              <select value={selectedOutputCurrency} onChange={handleSelectChange2}>
-                {
-                  options.map((option) => {
-                    // console.log(option)
-                    return (
-                      <option key={option[0]} value={option[0]}>{option[0]}</option>
-                    )
-                  })
-                }
-              </select>
+
+            <div class="resultValue" >
+              <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}{equalto}</div><br />
+              <div class="outputspan">{convertedValue}{selectedOutputCurrency}</div>
             </div>
+            <div class="buttonDiv">
+              <button type="submit" onClick={convert}>Convert</button>
+            </div>
+
+            <DatePickerComponent />
+
+            <DateRangePickerComponent />
           </div>
-
-
-          <div class="resultValue" >
-            <div class="inputspan">{inputCurrencyValue}{selectedInputCurrency}{equalto}</div><br />
-            <div class="outputspan">{convertedValue}{selectedOutputCurrency}</div>
-          </div>
-          <div class="buttonDiv">
-            <button type="submit" onClick={convert}>Convert</button>
-          </div>
-
-          <DatePickerComponent handleDateFormat = {handleDateFormat}/>
-
-          <DateRangePickerComponent handleDateFormat = {handleDateFormat}/>
         </div>
-      </div>
 
-    </div >
+      </div >
   );
 }
 

@@ -328,9 +328,11 @@ export default function Graph(props) {
       }
 
     return (
+        
+        
         <div>
-            <div class="dateRanges">
-                <div class="from-to">
+            <div className="dateRanges">
+                <div className="from-to">
                 <select value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>  {
                   currencies.map((option) => {
                     // console.log(option)
@@ -354,7 +356,7 @@ export default function Graph(props) {
                     ranges={[selectionRange]}
                     onChange={handleSelect}
                 />
-                <div class="dateRangesList">
+                <div className="dateRangesList">
                     Dates between {startDateInList} and {endDateInList}
 
                     <button onClick={historicalRatesForDatesGiven}>Historical Rates In Graph</button>
@@ -386,13 +388,8 @@ export default function Graph(props) {
                 </div>
 
             </div>
-            {/* <div className='Line-Chart'>
-                {isHistoricalRates && (
-
-                   
-
-                )}
-            </div> */}
         </div>
+
+
     )
 }

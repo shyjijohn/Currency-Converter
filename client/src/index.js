@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import AppContext from './AppContext';
+// import AppContext from './AppContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <AppContext>
+  // <AppContext>
     <App />
-  </AppContext>
+  // </AppContext>
   // </React.StrictMode>
 );
 

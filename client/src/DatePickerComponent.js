@@ -59,8 +59,8 @@ const handleCollect = (() => {
 
 
   return (
-    <div class="historical">
-            <div class="historical-split">
+    <div className="historical">
+            <div className="historical-split">
               <DatePicker
                 id="datePicker"
                 selected={selectedDate}

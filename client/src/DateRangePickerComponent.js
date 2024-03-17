@@ -68,13 +68,13 @@ export default function DateRangePickerComponent(props) {
 
 
     return (
-        <div class="dateRanges">
+        <div className="dateRanges">
 
             <DateRangePicker
                 ranges={[selectionRange]}
                 onChange={handleSelect}
             />
-            <div class="dateRangesList">
+            <div className="dateRangesList">
                 Dates between {startDateInList} and {endDateInList}
 
                 <button onClick={historicalRatesForDatesGiven}>Historical Rates</button>

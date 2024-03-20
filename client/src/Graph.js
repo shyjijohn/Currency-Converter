@@ -11,8 +11,6 @@ import { Chart as ChartJS, defaults } from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
 
 
-import revenueData from './data/revenueData.json'
-import sourceData from './data/sourceData.json'
 
 defaults.maintainAspectRatio = true; 
 defaults.responsive = true;
@@ -326,6 +324,10 @@ export default function Graph(props) {
         setSelectedOutputCurrencyInGraph(e.target.value);
         console.log("selectedOutputCurrencyChange", e.target.value)
       }
+
+
+      
+
 
     return (
         

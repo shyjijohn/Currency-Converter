@@ -135,8 +135,8 @@ export default function Historypage(props) {
             <div class="w-full h-full flex flex-row justify-start">
                 <div class="w-screen h-screen flex flex-col justify-start">
                     <div class="bg-blue-50 self-center shadow-xl w-4/5 h-1/3 p-5 mt-10 mx-10">
-                        <div class="flex flex-row justify-start">
-                            <div class="w-2/3 pt-5 block text-sm font-medium leading-5 text-gray-900">From
+                        <div class="bg-blue-800 w-6/7 gap-5 flex flex-row justify-between">
+                            <div class="bg-blue-500 w-full pt-5 block text-sm font-medium leading-5 text-gray-900">From
                                 <select type="text" class="bg-red-600 rounded-lg " value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
                                     {
                                         currencies.map((option) => {
@@ -149,7 +149,7 @@ export default function Historypage(props) {
                                 </select>
                             </div>
 
-                            <div class="w-2/3 pt-5 block text-sm font-medium leading-5 text-gray-900">To
+                            <div class="bg-blue-500 w-full pt-5 block text-sm font-medium leading-5 text-gray-900">To
                                 <select type="text" class="bg-red-600" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
                                     {
                                         currencies.map((option) => {

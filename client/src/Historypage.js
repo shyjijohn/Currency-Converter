@@ -52,6 +52,7 @@ export default function Historypage(props) {
     const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('GBP');
     const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('INR');
 
+    const [datesSelected, setDatesSelected] = useState('false');
 
 
     const handleSelect = (ranges) => {
@@ -71,6 +72,7 @@ export default function Historypage(props) {
 
             console.log("Start Date: ", ranges[0].toDate())
             console.log("End Date: ", ranges[1].toDate())
+            setDatesSelected('true')
         }
     };
 
@@ -181,8 +183,8 @@ export default function Historypage(props) {
                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">View</button>
 
 
-                        {isHistoricalRates && (
-
+                        {isHistoricalRates?(
+                            datesSelected?(
                             <>
                                 <Line data={{
                                     labels: axisInGraph.map(([key, value]) => key),
@@ -204,7 +206,10 @@ export default function Historypage(props) {
                                     }}
                                 />
                             </>
-                        )}
+                            ):
+                            (alert ('Please select the Dates')) 
+                        ):
+                       (alert ('You clicked History'))}
                     </div>
                 </div>
 

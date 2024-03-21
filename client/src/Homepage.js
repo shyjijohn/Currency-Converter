@@ -69,17 +69,16 @@ export default function Homepage(props) {
         <div class="flex flex-wrap flex-row justify-between align-start w-screen h-screen">
             <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full md:w-1/3 lg:w-2/3 bg-red-700" />
 
-            <div class="w-6/7 h-screen md:w-1/2 lg:w-1/3 flex justify-center align-middle bg-gray-500">
-                <div class="bg-blue-100 min-w-96 self-center flex justify-center items-center rounded-3xl shadow-lg w-2/3 h-3/4 ">
+            <div class="w-6/7 h-screen md:w-1/2 lg:w-1/3 flex justify-center align-middle">
+                <div class="border p-5 m-0 border-indigo-200 min-w-96 self-center flex justify-center items-center rounded-3xl shadow-md w-80  h-3/4 ">
 
-                    <div class="w-4/5 h-4/5 self-center bg-gray-500 flex flex-col justify-start">
-                    <div class="flex flex-col justify-start items-center ">
-                        <div class="w-full block text-sm font-medium leading-5 text-gray-900 bg-purple-500">Amount
-                            <input type="number" class="bg-red-600" value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
-                        </div>
+                    <div class="w-full h-full self-center flex flex-col justify-start">
+                    <div class="flex flex-col justify-start items-start ">
+                        <div class="w-full block text-sm font-medium leading-5 text-gray-900">Amount</div>
+                            <input type="number" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200 " value={inputCurrencyValue} onChange={handleTextBoxChange}></input>
 
                         <div class="w-full pt-5 block text-sm font-medium leading-5 text-gray-900">From
-                            <select type="text" class="bg-red-600" value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
+                            <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedInputCurrency} onChange={(e) => handleSelectChange1(e)}>
                                 {
                                     currencies.map((option) => {
                                         // console.log(option)
@@ -92,7 +91,7 @@ export default function Homepage(props) {
                         </div>
 
                         <div class="w-full pt-5 block text-sm font-medium leading-5 text-gray-900">To
-                            <select type="text" class="bg-red-600" value={selectedOutputCurrency} onChange={(e) => handleSelectChange2(e)}>
+                            <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrency} onChange={(e) => handleSelectChange2(e)}>
                                 {
                                     currencies.map((option) => {
                                         console.log("option...to know...", option)
@@ -105,28 +104,28 @@ export default function Homepage(props) {
                         </div>
                     </div>
 
-                    <button type="submit" onClick={convert} class="self-end flex-none rounded-md bg-indigo-500 
-                    px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Convert</button>
+                    <button type="submit" onClick={convert} class="self-end flex-none rounded-md bg-blue-500 
+                    h-10 w-24 mt-10 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
+                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Convert</button>
 
-                    <div class="flex flex-col self-start py-4">
+                    <div class="flex flex-col self-start py-8">
                         <div>{inputCurrencyValue}{selectedInputCurrency}=</div>
                         <div>{convertedValue}{selectedOutputCurrency}</div>
                         <div>wait</div>
                     </div>
 
                     <div class="flex flex-row flex-wrap justify-between">
-                        <button type="submit" onClick={() => props.handlePageChange('page2')} class="self-start flex-none rounded-md bg-indigo-500 
-                    px-3.5 py-2.5 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">History</button>
+                        <button type="submit" onClick={() => props.handlePageChange('page2')} class="self-start flex-none rounded-md bg-blue-500 
+                    h-10 w-24 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
+                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">History</button>
 
-                        <button type="submit" class="self-center flex-none rounded-md bg-indigo-500 
-                    px-3.5 py-2.5 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Calculators</button>
+                        <button type="submit" class="self-center flex-none rounded-md bg-blue-500 
+                    h-10 w-24 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
+                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Calculators</button>
 
-                        <button type="submit" class="self-end flex-none rounded-md bg-indigo-500 
-                    px-3.5 py-2.5 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Send</button>
+                        <button type="submit" class="self-end flex-none rounded-md bg-blue-500 
+                    h-10 w-24 mt-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
+                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Send</button>
                     </div>
                     </div>
                 </div>

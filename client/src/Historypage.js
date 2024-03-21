@@ -131,13 +131,16 @@ export default function Historypage(props) {
 
     return (
 
-        <div class=" fixed inset-0">
-            <div class="w-full h-full flex flex-row justify-start">
-                <div class="w-screen h-screen flex flex-col justify-start">
-                    <div class="bg-blue-50 self-center shadow-xl w-4/5 h-1/3 p-5 mt-10 mx-10">
-                        <div class="bg-blue-800 w-6/7 gap-5 flex flex-row justify-between">
-                            <div class="bg-blue-500 w-full pt-5 block text-sm font-medium leading-5 text-gray-900">From
-                                <select type="text" class="bg-red-600 rounded-lg " value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
+        <div class="w-screen h-screen flex flex-row justify-start">
+            <div class="w-full h-full flex flex-col justify-start">
+                
+                <img src="\Images/home-icon.png" alt="currency" onClick={() => props.handlePageChange('page1')}  class="mt-5 ml-24 h-7 w-7" />
+
+                <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-4/5 h-auto p-5 mt-5 mx-10">
+                    <div class="w-6/7 h-full ">
+                        <div class="w-6/7 gap-5 py-1 flex flex-row justify-between">
+                            <div class="w-full block text-sm font-medium leading-5 text-gray-900">From
+                                <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
                                     {
                                         currencies.map((option) => {
                                             // console.log(option)
@@ -149,8 +152,8 @@ export default function Historypage(props) {
                                 </select>
                             </div>
 
-                            <div class="bg-blue-500 w-full pt-5 block text-sm font-medium leading-5 text-gray-900">To
-                                <select type="text" class="bg-red-600" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
+                            <div class=" w-full block text-sm font-medium leading-5 text-gray-900">To
+                                <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
                                     {
                                         currencies.map((option) => {
                                             console.log("option...to know...", option)
@@ -163,60 +166,56 @@ export default function Historypage(props) {
                             </div>
                         </div>
 
-                        <div class="flex flex-row justify-around">
-                            <div class="w-2/3 pt-10 block text-sm font-medium leading-5 text-gray-900">Date Range
-                                <DatePicker
-                                    className="w-full px-4 pt-2 bg-dark rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                                    value={dateRange}
-                                    onChange={handleSelect}
-                                    range
-                                />
-                            </div>
-
-                            <button type="submit" onClick={historicalRatesForDatesGiven} class="self-end flex-none rounded-md bg-indigo-500 
-                    px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">View</button>
-
-                            
-                        </div>
-                        <button type="submit" onClick={() => props.handlePageChange('page1')} class="self-end flex-none rounded-md bg-gray-200 
-                    px-3.5 py-2.5 mt-5 text-sm font-semibold border-black-300 text-black shadow-sm hover:bg-indigo-300 
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Back to Home</button>
-
-                    </div>
-                    {isHistoricalRates && (
-
-                        <>
-                            <Line data={{
-                                labels: axisInGraph.map(([key, value]) => key),
-                                datasets: [
-                                    {
-                                        label: "Currency",
-                                        data: axisInGraph.map(([key, value]) => value[selectedOutputCurrencyInGraph]),
-                                        backgroundColor: "rgba(255, 122, 255)",
-                                        borderColor: "rgba(255, 132, 123)",
-                                    },
-                                ]
-                            }}
-                                options={{
-                                    elements: {
-                                        line: {
-                                            tension: 0.5
-                                        }
-                                    }
-                                }}
+                        <div class="pt-5 flex flex-col">
+                            <div class="w-2/3 block text-sm font-medium leading-5 text-gray-900">Date Range</div>
+                            <DatePicker
+                                className="w-3/4 px-4 pt-2 bg-dark rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                                value={dateRange}
+                                onChange={handleSelect}
+                                range
                             />
-                        </>
-                    )}
-                    <div>
+                        </div>
 
+                        <button type="submit" onClick={historicalRatesForDatesGiven} class="self-end flex-none rounded-md bg-blue-500 
+                    h-10 w-24 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
+                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">View</button>
+
+
+                        {isHistoricalRates && (
+
+                            <>
+                                <Line data={{
+                                    labels: axisInGraph.map(([key, value]) => key),
+                                    datasets: [
+                                        {
+                                            label: "Currency",
+                                            data: axisInGraph.map(([key, value]) => value[selectedOutputCurrencyInGraph]),
+                                            backgroundColor: "rgba(255, 122, 255)",
+                                            borderColor: "rgba(255, 132, 123)",
+                                        },
+                                    ]
+                                }}
+                                    options={{
+                                        elements: {
+                                            line: {
+                                                tension: 0.5
+                                            }
+                                        }
+                                    }}
+                                />
+                            </>
+                        )}
                     </div>
                 </div>
 
-                <div class="bg-red-400 w-2/3 h-screen flex flex-col justify-start">
-                    <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
+                <div>
 
                 </div>
+            </div>
+
+            <div class="bg-red-400 w-2/3 h-screen flex flex-col justify-start">
+                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
+
             </div>
         </div>
 

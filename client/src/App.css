@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 
-*,
+/* *,
 *::after,
 *::before {
   -webkit-box-sizing: border-box;
@@ -30,7 +30,7 @@
 }
 
 
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
   .background {
     padding: 10px; 
   }
@@ -40,7 +40,7 @@
   .background {
     padding: 0px;
   }
-} */
+}
 
 
 h1 {
@@ -54,33 +54,22 @@ h1 {
 .box {
   width: 90%;
   max-width: 1150px;
-  /* height: 50%; */
-  /* max-height: 700px; */
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* Vertically center items */
   align-items: center;
-  /* Horizontally center items */
 
 
   background: white;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  /* Smooth box shadow */
   transition: box-shadow 0.3s ease;
-  /* Transition effect for smoothness */
   border: 1px solid rgb(226, 221, 221);
   border-radius: 10px;
 }
 
 .box:hover {
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
-  /* Adjusted box shadow on hover */
 }
 .convert-fn
 {
@@ -131,7 +120,6 @@ li {
   width: 100%;
   line-height: 50px;
   height: 50px;
-  /* background-color: red; */
 }
 
 .activeLi {
@@ -141,7 +129,6 @@ li {
 
 
 .stacking {
-  /* background-color: red; */
   width: 100%;
   height: 30%;
   display: flex;
@@ -155,7 +142,6 @@ li {
 .amountDiv,
 .fromDiv,
 .toDiv {
-  /* background-color: white; */
   padding: 10px;
 }
 
@@ -167,40 +153,32 @@ li {
 }
 
 select {
-  /* background-color: blue; */
-  /* min-width: 200px;
-  max-width: 300px; */
+  
   width: 100%;
   min-width: 250px;
   border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   box-shadow: 0px 0px 20px rgba(96, 92, 92, 0.2);
-  /* Smooth box shadow */
 
 }
 
 input {
-  /* background-color: orange; */
   min-width: 250px;
   width: 100%;
-  /* min-width: 200px;
-  max-width: 300px; */
+ 
   border-radius: 10px;
   padding: 10px;
   font-size: 16px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  /* Smooth box shadow */
+  
 }
 
 .resultValue {
-  /* background-color: aqua; */
   width: 100%;
   padding: 40px;
 }
 
 .inputspan {
-  /* background-color: brown; */
   display: flex;
   text-align: left;
   justify-content: left;
@@ -210,19 +188,16 @@ input {
 
 .equalto {
   left: 20%;
-  /* background-color: blue; */
   color: black;
 }
 
 .outputspan {
-  /* background-color: brown; */
   color: black;
   font-size: 25px;
   font-weight: bold;
 }
 
 .buttonDiv {
-  /* background-color: yellow; */
   width: 100%;
   height: 25%;
   padding: 20px;
@@ -233,7 +208,7 @@ input {
 }
 
 
-/* button {
+button {
   padding: 10px;
   width: 200px;
   display: block;
@@ -245,14 +220,13 @@ input {
   margin: 0 auto;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
-} */
+}
 
 .historical {
   width: 90%;
   padding: 10px;
   display: flex;
   background-color: aqua;
-  /* overflow: auto; */
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -288,7 +262,6 @@ input {
 
 .dateRanges
 {
-  /* background-color: blue; */
 
 }
 .from-to
@@ -313,4 +286,4 @@ input {
 .eachDayResult
 {
   margin-left: 20px;
-}
+} */

@@ -133,10 +133,10 @@ export default function Historypage(props) {
 
     return (
 
-        <div class="w-screen h-screen flex flex-row justify-start">
+        <section class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
             <div class="w-full h-full flex flex-col justify-start">
                 
-                <img src="\Images/home-icon.png" alt="currency" onClick={() => props.handlePageChange('page1')}  class="mt-5 ml-24 h-7 w-7" />
+                <img src="\Images/home-icon.png" alt="currency" onClick={() => props.handlePageChange('page1')}  class="mt-5 ml-20 h-7 w-7" />
 
                 <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-4/5 h-auto p-5 mt-5 mx-10">
                     <div class="w-6/7 h-full ">
@@ -222,7 +222,7 @@ export default function Historypage(props) {
                 <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
 
             </div>
-        </div>
+        </section>
 
     )
 }

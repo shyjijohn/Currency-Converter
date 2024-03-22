@@ -66,10 +66,12 @@ export default function Homepage(props) {
 
     return (
       
-        <div class="flex flex-wrap flex-row justify-between align-start w-screen h-screen">
-            <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full md:w-1/3 lg:w-2/3 bg-red-700" />
+        <section class="grid gap-4 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+            <div>
+            <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
+            </div>
 
-            <div class="w-6/7 h-screen md:w-1/2 lg:w-1/3 flex justify-center align-middle">
+            <div class="w-6/7 h-screen flex justify-center align-middle">
                 <div class="border p-5 m-0 border-indigo-200 min-w-96 self-center flex justify-center items-center rounded-3xl shadow-md w-80  h-3/4 ">
 
                     <div class="w-full h-full self-center flex flex-col justify-start">
@@ -108,7 +110,7 @@ export default function Homepage(props) {
                     h-10 w-24 mt-10 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Convert</button>
 
-                    <div class="flex flex-col self-start py-8">
+                    <div class="flex flex-col self-start py-4">
                         <div>{inputCurrencyValue}{selectedInputCurrency}=</div>
                         <div>{convertedValue}{selectedOutputCurrency}</div>
                         <div>wait</div>
@@ -132,6 +134,6 @@ export default function Homepage(props) {
 
             </div>
 
-        </div>
+        </section>
     )
 }

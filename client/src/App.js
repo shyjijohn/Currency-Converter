@@ -11,42 +11,20 @@ import DateRangePickerComponent from './DateRangePickerComponent';
 import DatePickerComponent from './DatePickerComponent';
 import AppContext, { useCurrencies } from './AppContext';
 
-import Homepage from './Homepage';
-import Historypage from './Historypage';
-
+import { Routes, Route } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Historypage from './pages/Historypage';
+import { Link } from 'react-router-dom';
 
 function App() {
 
-  // const currencies = useCurrencies()
-
   console.log("Starting APP")
 
-  const [currentPage, setCurrentPage] = useState('page1');
+  // const [currentPage, setCurrentPage] = useState('page1');
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // const [activeId, setActiveId] = useState(1);
-
-  // const items = [
-  //   { id: 1, text: "Homepage" },
-  //   { id: 2, text: "Historypage" }
-  // ];
-
-
-  // const handleItemClick = (id) => {
-  //   console.log("ID", id)
-  //   setActiveId(id);
-  //   if (id === 1) {
-  //     setCurrentPage('page1')
-  //   }
-  //   else {
-  //     setCurrentPage('page2')
-  //   }
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
   // };
-
-
 
   console.log("Returning APP")
 
@@ -57,64 +35,21 @@ function App() {
     //position the textboxes
     //display the converted currency value
 
-    <AppContext>
-      {/* <div className="flex flex-row justify-center align-middle h-screen"> */}
+    <>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/historypage">History</Link></li>
+        </ul>
+      </nav>
+      <AppContext>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
 
-
-      {/* <div className="w-80 h-80 bg-gray-200 rounded-lg shadow-lg p-4"> */}
-      {/* <div className="background">
-          <div className="box">
-
-            <div className="app-bar">
-              <nav>
-                <ul>
-                  {items.map((item) => (
-                    <li key={item.id}
-                      onClick={() => handleItemClick(item.id)}
-                      className={activeId === item.id ? "activeLi" : ""}>
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-
-
-            {currentPage === 'page2' && <Graph />}
-
-            {currentPage === 'page1' && <Convert />}
-
-            <DatePickerComponent />
-
-            <DateRangePickerComponent />
-          </div>
-        </div> */}
-
-
-      {/* <h1 className="text-3xl font-bold">Currency Converter</h1> */}
-
-      {/* <img src = "/Images/currency-converter-clipart.jpg" className="w-full h-full object-cover rounded-t-lg" />
-        <div className="w-3/4 h-full bg-black flex flex-col justify-center align-middle"> */}
-
-{/* <div>
-              <nav>
-                <ul>
-                  {items.map((item) => (
-                    <li key={item.id}
-                      onClick={() => handleItemClick(item.id)}
-                      className={activeId === item.id ? "activeLi" : ""}>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div> */}  
-
-      {currentPage === 'page1' && <Homepage handlePageChange={handlePageChange} />}
-
-      {currentPage === 'page2' && <Historypage handlePageChange={handlePageChange} />}
-
-      {/* </div> */}
-    </AppContext>
+          <Route path="/historypage" element={<Historypage />} />
+        </Routes>
+      </AppContext>
+    </>
   );
 }
 

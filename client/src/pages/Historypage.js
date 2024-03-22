@@ -4,10 +4,10 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import React from 'react'
 import { useEffect, useState, useContext } from 'react';
-import AppContext, { useCurrencies } from './AppContext';
+import AppContext, { useCurrencies } from '../AppContext';
 
 // import DatePicker from 'react-datepicker';
-import { getFormattedDateString } from './utility';
+import { getFormattedDateString } from '../utility';
 import { DateObject } from 'react-multi-date-picker';
 
 import { Chart as ChartJS, defaults } from 'chart.js/auto';

@@ -122,7 +122,7 @@ export default function Historypage(props) {
     return (
 
         // <div class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
-        <div class="flex flex-row">
+        <div class="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-rows justify-around">
             <div class="w-full h-full flex flex-col justify-start">
 
                 {/* <h2>HISTORY</h2> */}
@@ -203,8 +203,8 @@ export default function Historypage(props) {
                 </div>
             </div>
 
-            <div class="bg-red-400 w-2/3 h-screen flex flex-col justify-start">
-                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
+            <div>
+                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen bg-red-700" />
 
             </div>
         </div>

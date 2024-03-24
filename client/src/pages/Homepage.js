@@ -63,7 +63,7 @@ export default function Homepage() {
         // <div class="grid gap-4 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
         <div class="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-around">
             <div>
-                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen bg-red-700" />
+                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen" />
             </div>
 
             <div class="w-6/7 h-screen flex justify-center align-middle">

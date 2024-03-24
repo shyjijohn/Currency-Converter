@@ -36,16 +36,9 @@ function App() {
     //display the converted currency value
 
     <>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/historypage">History</Link></li>
-        </ul>
-      </nav>
       <AppContext>
         <Routes>
           <Route path="/" element={<Homepage />} />
-
           <Route path="/historypage" element={<Historypage />} />
         </Routes>
       </AppContext>

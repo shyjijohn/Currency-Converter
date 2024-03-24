@@ -84,7 +84,7 @@ export default function Historypage(props) {
 
     const historicalRatesForDatesGiven = () => {
 
-
+        if(datesSelected === 'true') {
         var fetchingGraphRange = fetch(`https://api.frankfurter.app/${dateRange[0]}..${dateRange[1]}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
         var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
         fetchingGraphRangeJson.then((data) => {
@@ -115,7 +115,15 @@ export default function Historypage(props) {
 
         })
     }
+    else
+    {
+        alert("Please select the dates")
+    }
+    }
 
+
+
+    console.log("==========================================", isHistoricalRates)
 
     function handleSelectCurrencyChange1(e) {
 
@@ -133,10 +141,11 @@ export default function Historypage(props) {
 
     return (
 
-        <section class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+        // <div class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+        <div class="flex flex-row">
             <div class="w-full h-full flex flex-col justify-start">
-                
-                <img src="\Images/home-icon.png" alt="currency" onClick={() => props.handlePageChange('page1')}  class="mt-5 ml-20 h-7 w-7" />
+
+                {/* <h2>HISTORY</h2> */}
 
                 <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-4/5 h-auto p-5 mt-5 mx-10">
                     <div class="w-6/7 h-full ">
@@ -183,8 +192,7 @@ export default function Historypage(props) {
                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">View</button>
 
 
-                        {isHistoricalRates?(
-                            datesSelected?(
+                        {isHistoricalRates && (
                             <>
                                 <Line data={{
                                     labels: axisInGraph.map(([key, value]) => key),
@@ -206,10 +214,7 @@ export default function Historypage(props) {
                                     }}
                                 />
                             </>
-                            ):
-                            (alert ('Please select the Dates')) 
-                        ):
-                       (alert ('You clicked History'))}
+                        )}
                     </div>
                 </div>
 
@@ -222,7 +227,7 @@ export default function Historypage(props) {
                 <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="w-full h-full bg-red-700" />
 
             </div>
-        </section>
+        </div>
 
     )
 }

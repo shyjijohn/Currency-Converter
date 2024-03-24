@@ -28,23 +28,10 @@ export default function Historypage(props) {
 
     const currencies = useCurrencies()
 
-
-
-
-    //daterange
-
-    // let [value, setValue] = useState(new Date())
     const [dateRange, setDateRange] = useState([
         new DateObject().subtract(8, "days"),
         new DateObject().subtract(4, "days")
     ])
-
-    // const [selectionRange, setSelectionRange] = useState({
-    //     startDate: new Date(),
-    //     endDate: new Date(),
-    //     key: 'selection',
-    // });
-
 
     const [isHistoricalRates, setIsHistoricalRates] = useState(false);
 
@@ -52,28 +39,16 @@ export default function Historypage(props) {
     const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('GBP');
     const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('INR');
 
-    // const [datesSelected, setDatesSelected] = useState('false');
-
-
     const handleSelect = (ranges) => {
-        console.log(ranges.length)
-        console.log("DateRange on change : ", ranges)
+        // console.log(ranges.length)
+        // console.log("DateRange on change : ", ranges)
 
         if (ranges.length === 2) {
-            // setDateRangeFn(ranges[0].toDate, ranges[1].toDate)
-            //setDateRange(ranges[0].toDate, ranges[1].toDate)
-
-
-            // var date1 = getFormattedDateString(ranges[0].toDate())
-            // var date2 = getFormattedDateString(ranges[1].toDate())
-
-            // console.log("Now date1 is " + date1)
-            // console.log("Now date2 is " + date2)
             setDateRange([ranges[0], ranges[1]])
 
 
-            console.log("Start Date: ", ranges[0].toDate())
-            console.log("End Date: ", ranges[1].toDate())
+            // console.log("Start Date: ", ranges[0].toDate())
+            // console.log("End Date: ", ranges[1].toDate())
 
 
             // setDatesSelected('true')
@@ -88,67 +63,59 @@ export default function Historypage(props) {
 
     const historicalRatesForDatesGiven = () => {
 
-        console.log("|DATE, ", dateRange)
+        // console.log("|DATE, ", dateRange)
 
         var date1 = getFormattedDateString(dateRange[0].toDate())
-        console.log("date1: ", date1)
+        // console.log("date1: ", date1)
 
         var date2 = getFormattedDateString(dateRange[1].toDate())
-        console.log("date2: ", date2)
+        // console.log("date2: ", date2)
 
 
-        // if(datesSelected === 'true') {
         var fetchingGraphRange = fetch(`https://api.frankfurter.app/${date1}..${date2}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
         var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
         fetchingGraphRangeJson.then((data) => {
-            console.log("jsondata for graphRange.....", data)
+            // console.log("jsondata for graphRange.....", data)
 
             const graphData = Object.entries(data)
             // setHistoricalRates(graphData)
-            console.log("graphData", graphData)
+            // console.log("graphData", graphData)
 
             const graphDataAmount = graphData[0][1]
-            console.log("graphDataAmount", graphDataAmount)
+            // console.log("graphDataAmount", graphDataAmount)
             setAmountInGraph(graphDataAmount)
-            console.log("amountInGraph", amountInGraph)
+            // console.log("amountInGraph", amountInGraph)
 
             const graphDataBase = graphData[1][1]
-            console.log("graphDataBase", graphDataBase)
+            // console.log("graphDataBase", graphDataBase)
             setBaseInGraph(graphDataBase)
-            console.log("baseInGraph", baseInGraph)
+            // console.log("baseInGraph", baseInGraph)
 
 
             const graphDataAxis = Object.entries(graphData[4][1])
-            console.log("graphDataAxis", graphDataAxis)
+            // console.log("graphDataAxis", graphDataAxis)
             setAxisInGraph(graphDataAxis)
-            console.log("axisInGraph", axisInGraph)
+            // console.log("axisInGraph", axisInGraph)
 
 
             setIsHistoricalRates(!isHistoricalRates)
 
         })
     }
-    // else
-    // {
-    //     alert("Please select the dates")
-    // }
-    // }
 
-
-
-    console.log("==========================================", isHistoricalRates)
+    // console.log("==========================================", isHistoricalRates)
 
     function handleSelectCurrencyChange1(e) {
 
         const selectedOptionKey = e.target.getAttribute('key')
-        console.log("selectedOptionKey", selectedOptionKey)
+        // console.log("selectedOptionKey", selectedOptionKey)
         setSelectedInputCurrencyInGraph(e.target.value);
-        console.log("selectedInputCurrencyChange", e.target.value)
+        // console.log("selectedInputCurrencyChange", e.target.value)
     }
 
     function handleSelectCurrencyChange2(e) {
         setSelectedOutputCurrencyInGraph(e.target.value);
-        console.log("selectedOutputCurrencyChange", e.target.value)
+        // console.log("selectedOutputCurrencyChange", e.target.value)
     }
 
 

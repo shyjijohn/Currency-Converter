@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export default function Homepage(props) {
+export default function Homepage() {
 
 
     const currencies = useCurrencies()
@@ -20,24 +20,16 @@ export default function Homepage(props) {
     const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('GBP')
     const [selectedInputCurrencyKey, setSelectedInputCurrencyKey] = useState('')
     const [selectedOutputCurrencyKey, setSelectedOutputCurrencyKey] = useState('')
-    const [equalto, setEqualTo] = useState('=')
 
 
 
 
     function handleTextBoxChange(e) {
         setInputCurrencyValue(e.target.value);
-        // console.log("textBoxValue"+e.target.value)
     }
 
     function handleSelectChange1(e) {
-
-        // const selectedIndex = e.target.selectedIndex.options.map((option) =>{option[1]})
-        // console.log("selectedIndex", selectedIndex)
-
         const selectedOptionKey = e.target.getAttribute('key')
-        // // console.log("e.target.options[selectedIndex]", e.target.options[selectedIndex])
-        // // console.log("getAttribute('data-key')", getAttribute('data-key')) 
         console.log("selectedOptionKey", selectedOptionKey)
 
         setSelectedInputCurrency(e.target.value);

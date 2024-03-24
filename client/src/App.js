@@ -5,10 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import Graph from './Graph';
-import Convert from './Convert';
-import DateRangePickerComponent from './DateRangePickerComponent';
-import DatePickerComponent from './DatePickerComponent';
 import AppContext, { useCurrencies } from './AppContext';
 
 import { Routes, Route } from 'react-router-dom';
@@ -19,12 +15,6 @@ import { Link } from 'react-router-dom';
 function App() {
 
   console.log("Starting APP")
-
-  // const [currentPage, setCurrentPage] = useState('page1');
-
-  // const handlePageChange = (page) => {
-  //   setCurrentPage(page);
-  // };
 
   console.log("Returning APP")
 

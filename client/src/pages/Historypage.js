@@ -35,15 +35,15 @@ export default function Historypage(props) {
 
     // let [value, setValue] = useState(new Date())
     const [dateRange, setDateRange] = useState([
-        new DateObject().subtract(4, "days"),
-        new DateObject().add(4, "days")
+        new DateObject().subtract(8, "days"),
+        new DateObject().subtract(4, "days")
     ])
 
-    const [selectionRange, setSelectionRange] = useState({
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection',
-    });
+    // const [selectionRange, setSelectionRange] = useState({
+    //     startDate: new Date(),
+    //     endDate: new Date(),
+    //     key: 'selection',
+    // });
 
 
     const [isHistoricalRates, setIsHistoricalRates] = useState(false);
@@ -52,7 +52,7 @@ export default function Historypage(props) {
     const [selectedInputCurrencyInGraph, setSelectedInputCurrencyInGraph] = useState('GBP');
     const [selectedOutputCurrencyInGraph, setSelectedOutputCurrencyInGraph] = useState('INR');
 
-    const [datesSelected, setDatesSelected] = useState('false');
+    // const [datesSelected, setDatesSelected] = useState('false');
 
 
     const handleSelect = (ranges) => {
@@ -62,17 +62,21 @@ export default function Historypage(props) {
         if (ranges.length === 2) {
             // setDateRangeFn(ranges[0].toDate, ranges[1].toDate)
             //setDateRange(ranges[0].toDate, ranges[1].toDate)
-            var date1 = getFormattedDateString(ranges[0].toDate())
-            var date2 = getFormattedDateString(ranges[1].toDate())
 
-            console.log("Now date1 is " + date1)
-            console.log("Now date2 is " + date2)
-            setDateRange([date1, date2])
+
+            // var date1 = getFormattedDateString(ranges[0].toDate())
+            // var date2 = getFormattedDateString(ranges[1].toDate())
+
+            // console.log("Now date1 is " + date1)
+            // console.log("Now date2 is " + date2)
+            setDateRange([ranges[0], ranges[1]])
 
 
             console.log("Start Date: ", ranges[0].toDate())
             console.log("End Date: ", ranges[1].toDate())
-            setDatesSelected('true')
+
+
+            // setDatesSelected('true')
         }
     };
 
@@ -84,8 +88,17 @@ export default function Historypage(props) {
 
     const historicalRatesForDatesGiven = () => {
 
-        if(datesSelected === 'true') {
-        var fetchingGraphRange = fetch(`https://api.frankfurter.app/${dateRange[0]}..${dateRange[1]}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
+        console.log("|DATE, ", dateRange)
+
+        var date1 = getFormattedDateString(dateRange[0].toDate())
+        console.log("date1: ", date1)
+
+        var date2 = getFormattedDateString(dateRange[1].toDate())
+        console.log("date2: ", date2)
+
+
+        // if(datesSelected === 'true') {
+        var fetchingGraphRange = fetch(`https://api.frankfurter.app/${date1}..${date2}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
         var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
         fetchingGraphRangeJson.then((data) => {
             console.log("jsondata for graphRange.....", data)
@@ -115,11 +128,11 @@ export default function Historypage(props) {
 
         })
     }
-    else
-    {
-        alert("Please select the dates")
-    }
-    }
+    // else
+    // {
+    //     alert("Please select the dates")
+    // }
+    // }
 
 
 

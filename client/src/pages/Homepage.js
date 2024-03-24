@@ -14,7 +14,7 @@ export default function Homepage(props) {
 
 
 
-    const [inputCurrencyValue, setInputCurrencyValue] = useState('')
+    const [inputCurrencyValue, setInputCurrencyValue] = useState('1')
     const [convertedValue, setConvertedValue] = useState('')
     const [selectedInputCurrency, setSelectedInputCurrency] = useState('USD')
     const [selectedOutputCurrency, setSelectedOutputCurrency] = useState('GBP')

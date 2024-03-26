@@ -23,6 +23,17 @@ defaults.maintainAspectRatio = true;
 defaults.responsive = true;
 
 
+function CustomDatePicker({ onFocus, value, onChange }) {
+
+    return (
+        <input className="md:w-1/2 w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200"
+            onChange={onChange}
+            onFocus={onFocus}
+            value={value}
+        />
+    );
+}
+
 export default function Historypage(props) {
 
 
@@ -119,6 +130,7 @@ export default function Historypage(props) {
     }
 
 
+
     return (
 
         // <div class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
@@ -127,11 +139,11 @@ export default function Historypage(props) {
 
                 {/* <h2>HISTORY</h2> */}
 
-                <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-4/5 h-auto p-5 mt-5 mx-10">
+                <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-11/12 h-auto p-5 mt-5 mx-10">
                     <div class="w-6/7 h-full ">
                         <div class="w-6/7 gap-5 py-1 flex flex-row justify-between">
                             <div class="w-full block text-sm font-medium leading-5 text-gray-900">From
-                                <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
+                                <select type="text" class="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
                                     {
                                         currencies.map((option) => {
                                             // console.log(option)
@@ -144,7 +156,7 @@ export default function Historypage(props) {
                             </div>
 
                             <div class=" w-full block text-sm font-medium leading-5 text-gray-900">To
-                                <select type="text" class="w-full h-10 mt-2 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
+                                <select type="text" class="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
                                     {
                                         currencies.map((option) => {
                                             console.log("option...to know...", option)
@@ -158,13 +170,16 @@ export default function Historypage(props) {
                         </div>
 
                         <div class="pt-5 flex flex-col">
-                            <div class="w-2/3 block text-sm font-medium leading-5 text-gray-900">Date Range</div>
-                            <DatePicker
-                                className="w-3/4 px-4 pt-2 bg-dark rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                                value={dateRange}
-                                onChange={handleSelect}
-                                range
-                            />
+                            <div class="w-2/3 pb-2 block text-sm font-medium leading-5 text-gray-900">Date Range</div>
+                            {/* <div className="w-1/2 h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200"> */}
+                                <DatePicker
+                                    value={dateRange}
+                                    onChange={handleSelect}
+                                    dateSeparator="   to   "
+                                    range
+                                    render={<CustomDatePicker />}
+                                />
+                            {/* </div> */}
                         </div>
 
                         <button type="submit" onClick={historicalRatesForDatesGiven} class="self-end flex-none rounded-md bg-blue-500 
@@ -204,10 +219,12 @@ export default function Historypage(props) {
             </div>
 
             <div>
-                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen bg-red-700" />
+                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen" />
 
             </div>
         </div>
 
     )
 }
+
+

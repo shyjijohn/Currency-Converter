@@ -134,7 +134,7 @@ export default function Historypage(props) {
     return (
 
         // <div class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
-        <div class="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-rows justify-around">
+        <div class="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-9 2xl:flex-rows justify-around">
             <div class="w-full h-full flex flex-col justify-start">
 
                 {/* <h2>HISTORY</h2> */}

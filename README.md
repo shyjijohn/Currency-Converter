@@ -12,7 +12,7 @@ Demo Development
 
 Clone and install
 
-git clone https://shyjijohn.github.io/Currency-Converter/
+git clone https://github.com/shyjijohn/Currency-Converter.git
 
 cd client
 

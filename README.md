@@ -12,9 +12,13 @@ Demo Development
 Clone and install
 
 git clone https://shyjijohn.github.io/Currency-Converter/
+
 cd client
+
 npm i
 
 
+
 Run a development server.
+
 npm run client

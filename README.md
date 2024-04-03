@@ -8,18 +8,21 @@ Key Features:
 2. Multiple Currency Support: users can convert between a wide range of currencies
 3. Historical Data: provides historical exchange rate data, enabling users to track currency trends over time and make informed decisions.
 
-Demo Development
+## Demo Development
 
 Clone and install
 
+```bash
 git clone https://github.com/shyjijohn/Currency-Converter.git
 
 cd client
 
 npm i
-
+```
 
 
 Run a development server.
 
+```bash
 npm run client
+```

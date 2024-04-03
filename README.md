@@ -5,9 +5,9 @@ The handy tool designed to simplify currency conversion for users around the wor
 
 ## Key Features:
 
-- **Real-Time Exchange Rates** -  fetches the latest exchange rates from Frankfurter API.
-**Multiple Currency Support-users can convert between a wide range of currencies
-3. Historical Data: provides historical exchange rate data, enabling users to track currency trends over time and make informed decisions.
+- **Real-Time Exchange Rates** - fetches the latest exchange rates from Frankfurter API.
+- **Multiple Currency Support** - users can convert between a wide range of currencies
+- **Historical Data: provides** - historical exchange rate data, enabling users to track currency trends over time and make informed decisions.
 
 ## Demo Development
 

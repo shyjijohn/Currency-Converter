@@ -219,7 +219,7 @@ export default function Historypage(props) {
             </div>
 
             <div>
-                <img src="\Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen" />
+                <img src="Images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen" />
 
             </div>
         </div>

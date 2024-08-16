@@ -28,7 +28,7 @@ function App() {
     <>
       <AppContext>
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<button>bhfhfhdjf</button>} />
           <Route path="/historypage" element={<Historypage />} />
         </Routes>
       </AppContext>

@@ -68,7 +68,7 @@ export default function Homepage() {
         <div>
             <div className=' md:absolute m-5 flex flex-row items-center'>
                 <div>
-                    <img src='Images/currency.png' alt="currency" class="object-contain w-10 h-10 mr-2" />
+                    <img src='images/currency.png' alt="currency" class="object-contain w-10 h-10 mr-2" />
                 </div>
                 <div className='text-2xl font-medium text-slate-700 tracking-wider'>
                     RateGrapher
@@ -78,7 +78,7 @@ export default function Homepage() {
             <div class=" flex gap-4 flex-col-reverse md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-around">
                 <div class=" min-w-fit w-7/12 h-auto">
 
-                    <img src="Images/currency-converter-clipart.jpg" alt="currency" class="object-contain min-w-44 w-full h-screen" />
+                    <img src="images/currency-converter-clipart.jpg" alt="currency" class="object-contain min-w-44 w-full h-screen" />
                 </div>
 
                 <div class=" min-w-fit p-5 md:w-3/12 h-auto flex justify-center align-middle">

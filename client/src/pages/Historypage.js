@@ -3,14 +3,14 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 
 import React from 'react'
-import { useEffect, useState, useContext } from 'react';
-import AppContext, { useCurrencies } from '../AppContext';
+import { useState } from 'react';
+import { useCurrencies } from '../AppContext';
 
 // import DatePicker from 'react-datepicker';
 import { getFormattedDateString } from '../utility';
 import { DateObject } from 'react-multi-date-picker';
 
-import { Chart as ChartJS, defaults } from 'chart.js/auto';
+import { defaults } from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
 
 
@@ -67,8 +67,6 @@ export default function Historypage(props) {
     };
 
 
-    const [amountInGraph, setAmountInGraph] = useState();
-    const [baseInGraph, setBaseInGraph] = useState();
     const [axisInGraph, setAxisInGraph] = useState();
 
 
@@ -83,7 +81,7 @@ export default function Historypage(props) {
         // console.log("date2: ", date2)
 
 
-        var fetchingGraphRange = fetch(`https://api.frankfurter.app/${date1}..${date2}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
+        var fetchingGraphRange = fetch(`https://api.frankfurter.dev/v1/${date1}..${date2}?from=${selectedInputCurrencyInGraph}&to=${selectedOutputCurrencyInGraph}`)
         var fetchingGraphRangeJson = fetchingGraphRange.then((data) => data.json())
         fetchingGraphRangeJson.then((data) => {
             // console.log("jsondata for graphRange.....", data)
@@ -92,14 +90,14 @@ export default function Historypage(props) {
             // setHistoricalRates(graphData)
             // console.log("graphData", graphData)
 
-            const graphDataAmount = graphData[0][1]
+            // const graphDataAmount = graphData[0][1]
             // console.log("graphDataAmount", graphDataAmount)
-            setAmountInGraph(graphDataAmount)
+            // setAmountInGraph(graphDataAmount)
             // console.log("amountInGraph", amountInGraph)
 
-            const graphDataBase = graphData[1][1]
+            // const graphDataBase = graphData[1][1]
             // console.log("graphDataBase", graphDataBase)
-            setBaseInGraph(graphDataBase)
+            // setBaseInGraph(graphDataBase)
             // console.log("baseInGraph", baseInGraph)
 
 
@@ -118,7 +116,7 @@ export default function Historypage(props) {
 
     function handleSelectCurrencyChange1(e) {
 
-        const selectedOptionKey = e.target.getAttribute('key')
+        // const selectedOptionKey = e.target.getAttribute('key')
         // console.log("selectedOptionKey", selectedOptionKey)
         setSelectedInputCurrencyInGraph(e.target.value);
         // console.log("selectedInputCurrencyChange", e.target.value)
@@ -133,17 +131,17 @@ export default function Historypage(props) {
 
     return (
 
-        // <div class="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
-        <div class="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-9 2xl:flex-rows justify-around">
-            <div class="w-full h-full flex flex-col justify-start">
+        // <div className="grid gap-8 grid-row-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+        <div className="flex gap-4 flex-col md:flex-row lg:flex-row xl:flex-9 2xl:flex-rows justify-around">
+            <div className="w-full h-full flex flex-col justify-start">
 
                 {/* <h2>HISTORY</h2> */}
 
-                <div class="border border-2-blue-500 self-center rounded-3xl shadow-md w-11/12 h-auto p-5 mt-5 mx-10">
-                    <div class="w-6/7 h-full ">
-                        <div class="w-6/7 gap-5 py-1 flex flex-row justify-between">
-                            <div class="w-full block text-sm font-medium leading-5 text-gray-900">From
-                                <select type="text" class="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
+                <div className="border border-2-blue-500 self-center rounded-3xl shadow-md w-11/12 h-auto p-5 mt-5 mx-10">
+                    <div className="w-6/7 h-full ">
+                        <div className="w-6/7 gap-5 py-1 flex flex-row justify-between">
+                            <div className="w-full block text-sm font-medium leading-5 text-gray-900">From
+                                <select type="text" className="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedInputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange1(e)}>
                                     {
                                         currencies.map((option) => {
                                             // console.log(option)
@@ -155,11 +153,11 @@ export default function Historypage(props) {
                                 </select>
                             </div>
 
-                            <div class=" w-full block text-sm font-medium leading-5 text-gray-900">To
-                                <select type="text" class="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
+                            <div className=" w-full block text-sm font-medium leading-5 text-gray-900">To
+                                <select type="text" className="w-full h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200" value={selectedOutputCurrencyInGraph} onChange={(e) => handleSelectCurrencyChange2(e)}>
                                     {
                                         currencies.map((option) => {
-                                            console.log("option...to know...", option)
+                                            // console.log("option...to know...", option)
                                             return (
                                                 <option key={option[0]} value={option[0]}>{option[0]}</option>
                                             )
@@ -169,8 +167,8 @@ export default function Historypage(props) {
                             </div>
                         </div>
 
-                        <div class="pt-5 flex flex-col">
-                            <div class="w-2/3 pb-2 block text-sm font-medium leading-5 text-gray-900">Date Range</div>
+                        <div className="pt-5 flex flex-col">
+                            <div className="w-2/3 pb-2 block text-sm font-medium leading-5 text-gray-900">Date Range</div>
                             {/* <div className="w-1/2 h-10 mt-2 pl-3 rounded-md shadow-md border border-blue-200"> */}
                                 <DatePicker
                                     value={dateRange}
@@ -182,7 +180,7 @@ export default function Historypage(props) {
                             {/* </div> */}
                         </div>
 
-                        <button type="submit" onClick={historicalRatesForDatesGiven} class="self-end flex-none rounded-md bg-blue-500 
+                        <button type="submit" onClick={historicalRatesForDatesGiven} className="self-end flex-none rounded-md bg-blue-500 
                     h-10 w-24 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 
                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">View</button>
 
@@ -219,7 +217,7 @@ export default function Historypage(props) {
             </div>
 
             <div>
-                <img src="Currency-Converter/images/currency-converter-clipart.jpg" alt="currency" class="object-contain w-full h-screen" />
+                <img src="Currency-Converter/images/currency-converter-clipart.jpg" alt="currency" className="object-contain w-full h-screen" />
             </div>
         </div>
 

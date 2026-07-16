@@ -9,7 +9,7 @@ export default function AppContext({ children }) {
   const [options, setOptions] = useState([])
 
   function fetchDataFromServer() {
-    var fetchPromise = fetch(`https://api.frankfurter.app/currencies`)
+    var fetchPromise = fetch(`https://api.frankfurter.dev/v1/currencies`)
     var jsonMakingPromise = fetchPromise.then((data) => data.json())
     jsonMakingPromise.then((data) => {
       // console.log("data before changing: ", data)
@@ -18,7 +18,7 @@ export default function AppContext({ children }) {
       // console.log("data1 : ", entries)
       // console.log("data2 : "  + entries)
       setOptions(entries)
-      console.log("entries : ", entries)
+      // console.log("entries : ", entries)
       // setSelectedInputCurrency(entries[0][0])
       // console.log("setSelectedInputCurrency : ", selectedInputCurrency)
       // setSelectedOutputCurrency(entries[0][0])
